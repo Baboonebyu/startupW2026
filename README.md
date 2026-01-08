@@ -1,14 +1,6 @@
 # Temple Match Utah
 
-[My Notes](notes.md)
-
 Temple Match is a web app designed to help you practice matching the different temples in Utah with their correct names. It provides a fun way to learn and allows you to compete against your friends. 
-
-> [!NOTE]
-> This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
-
-> [!NOTE]
-> If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
 
 ### Elevator pitch
 
@@ -28,7 +20,7 @@ These show the four main screens of my webapp. They will start at the home scree
 - Login to save your scores
 - Atempt to ge the fastest score to make it onto the leader board
 - Use the Be Inspired button to see an insprational scripture.
-- See what temples your best and worst at matching
+- See what temples you are best and worst at matching
 
 ### Technologies
 
@@ -39,7 +31,7 @@ I am going to use the required technologies in the following ways.
 - **React** - This is going to be used for the navigation buttons and posibly the cards fliping over
 - **Service** - Going to call an API to get a random scripture to display there are two bible API on the list that was linked to. There is also an open scripture api I found but I don't know if that is compatable. Also we will need to retreve user scores and data from the database
 - **DB/Login** - Store the account info for each player and there data such as High scores and most missed and most correct matches 
-- **WebSocket** - Sharing scoring data. if another player gets a Personal best or a High score it brodcasts it so everyone can celebrate!
+- **WebSocket** - Sharing scoring data. if another player gets a Personal best or a High score it brodcasts it so everyone can celebrate! Also displaing the number of pepole currently on. (Not sure if this is websocket)
 ## 🚀 Specification Deliverable
 
 > [!NOTE]
