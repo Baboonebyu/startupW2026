@@ -34,12 +34,12 @@ These show the four main screens of my webapp. They will start at the home scree
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Will be used for the structure of the 4 webpages.
+- **CSS** - Will be used to make the pages look profesional and hopefuly the animation of the cards fliping over
+- **React** - This is going to be used for the navigation buttons and posibly the cards fliping over
+- **Service** - Going to call an API to get a random scripture to display there are two bible API on the list that was linked to. There is also an open scripture api I found but I don't know if that is compatable. Also we will need to retreve user scores and data from the database
+- **DB/Login** - Store the account info for each player and there data such as High scores and most missed and most correct matches 
+- **WebSocket** - Sharing scoring data. if another player gets a Personal best or a High score it brodcasts it so everyone can celebrate!
 ## 🚀 Specification Deliverable
 
 > [!NOTE]
@@ -47,11 +47,11 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [X] Proper use of Markdown
+- [X] A concise and compelling elevator pitch
+- [X] Description of key features
+- [X] Description of how you will use each technology
+- [X] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 ## 🚀 AWS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
