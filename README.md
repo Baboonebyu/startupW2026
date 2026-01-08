@@ -20,20 +20,15 @@ Do you want to impress your friends? Or maybe you are like me and have accidenta
 <img src="TempleMatchReadmePhotos/GameScreen.jpg" alt="Image of game screen" width="400" height="400">
 <img src="TempleMatchReadmePhotos/ScoreScreen.jpg" alt="Image of scores screen" width="400" height="400">
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
+These show the four main screens of my webapp. They will start at the home screen and can navigate to the start screen by loging in. After that they can go to the game screen or the scores screen 
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Match photos of temples with their names
+- Login to save your scores
+- Atempt to ge the fastest score to make it onto the leader board
+- Use the Be Inspired button to see an insprational scripture.
+- See what temples your best and worst at matching
 
 ### Technologies
 
