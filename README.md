@@ -1,4 +1,4 @@
-# Temple Match
+# Temple Match Utah
 
 [My Notes](notes.md)
 
@@ -12,7 +12,7 @@ Temple Match is a web app designed to help you practice matching the different t
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Do you want to impress your friends? Or maybe you are like me and have accidentally gone to the wrong temple before. With over 30 temples in utah in a variety of different stages, there is a lot to remember. Temple Match Utah is here to help you learn and have fun while doing it. Improve your knowledge and compete for the high score. 
 
 ### Design
 
