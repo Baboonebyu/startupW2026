@@ -1,6 +1,6 @@
 # CS 260 Notes
 
-[My startup - Temple Match]
+[My startup - Temple Match](https://templematch.click)
 
 ## Helpful links
 
@@ -13,14 +13,10 @@
 My IP address is: 3.218.96.100
 Sad I cound't get the credits as I made my account before. :( but it is now running
 
-
-# Defalt notes under this
-
-
 ## Caddy
 
- [instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md).
-
+This went super easy. Hardest part was trying to do control v in git bash
+# Defalt notes under this
 ## HTML
 
 
