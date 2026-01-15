@@ -1,4 +1,4 @@
-# Temple Match Utah
+# [Temple Match Utah](https://templematch.click)
 
 Temple Match is a web app designed to help you practice matching the different temples in Utah with their correct names. It provides a fun way to learn and allows you to compete against your friends. 
 
@@ -48,7 +48,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [x] **Server deployed and accessible with custom domain name** - [My server link](https://templematch.click).
+      I started my server using AWS. Got my custom domain name and did the caddy stuff so it can use https. Not too bad other that I can't get the AWS credit as my account is too old.
 
 ## 🚀 HTML deliverable
 
