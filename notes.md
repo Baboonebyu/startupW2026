@@ -11,16 +11,16 @@
 ## AWS
 
 My IP address is: 3.218.96.100
-Sad I cound't get the credits as I made my account before. :( but it is now running
+Sad I couldn't get the credits as I made my account before. :( but it is now running
 
 ## Caddy
 
 This went super easy. Hardest part was trying to do control v in git bash
 
 ## HTML
-First I did the structure codepen. I am still getting used to HTML but the hardest thing was getting the Image to work because I copyed the wrong link. I got the websites link and not the image.
+First I did the structure CodePen. I am still getting used to HTML but the hardest thing was getting the Image to work because I copied the wrong link. I got the websites link and not the image.
 
-# Defalt notes under this
+# Default notes under this
 ## CSS
 
 This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
