@@ -16,11 +16,11 @@ Sad I cound't get the credits as I made my account before. :( but it is now runn
 ## Caddy
 
 This went super easy. Hardest part was trying to do control v in git bash
-# Defalt notes under this
+
 ## HTML
+First I did the structure codepen. I am still getting used to HTML but the hardest thing was getting the Image to work because I copyed the wrong link. I got the websites link and not the image.
 
-
-
+# Defalt notes under this
 ## CSS
 
 This took a couple hours to get it how I wanted. It was important to make it responsive and Bootstrap helped with that. It looks great on all kinds of screen sizes.
