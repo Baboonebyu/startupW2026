@@ -20,6 +20,8 @@ This went super easy. Hardest part was trying to do control v in git bash
 ## HTML
 First I did the structure CodePen. I am still getting used to HTML but the hardest thing was getting the Image to work because I copied the wrong link. I got the websites link and not the image.
 
+Pushed the Simon code to my website. I changed a few basic things like the quote. Pushing it I had to enable sudo on my pc and also had to fix the path on my key so Git bash could Push the files. 
+
 # Default notes under this
 ## CSS
 
