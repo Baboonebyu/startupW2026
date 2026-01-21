@@ -55,15 +55,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I created 5 HTML pages. One might be temporary 
+- [x] **Proper HTML element usage** - I used header and footer tags and also added a icon for my page. I used body and div tags as well.
+- [x] **Links** - I have added anchor tags to navigate my page and to link to another website
+- [x] **Text** - I added the needed text but a lot of the text I added was filler for future sections. 
+- [x] **3rd party API placeholder** - Found under the Be inspired button
+- [x] **Images** - I uploaded 8 images. I still have more alternate one to add for the game but I have the display sections set up with img tags. It class we talked about the size restrictions on our servers and how we really should not go over that. Is it possible to store the images in the database. (Not sure on the restrictions) and then send the 8 needed one for that round to the user? Or there might be a better way to do this. I am not too worried as I will only have about 35 photos and they each are less than 300kb. 
+- [x] **Login placeholder** - Added login for username and password. Not connected to anything yet.
+- [x] **DB data placeholder** - Added a table for the data to populate with placeholder data such as Brother Brigham's score. 
+- [x] **WebSocket placeholder** - Added a little text for where this will be displayed
 
 ## 🚀 CSS deliverable
 

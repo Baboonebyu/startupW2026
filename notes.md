@@ -22,6 +22,9 @@ First I did the structure CodePen. I am still getting used to HTML but the harde
 
 Pushed the Simon code to my website. I changed a few basic things like the quote. Pushing it I had to enable sudo on my pc and also had to fix the path on my key so Git bash could Push the files. 
 
+I coded all the HTML up and got it deployed. I had to learn extra on how the icons for webpages work and I got one for my website. I noticed something strange. Local Host was a lot more forgiving with mistakes on capitalization. On both a Img and anchor tag it worked but once I deployed it it had issues. I ended up needing to fix and redeploy my code. Also with regards to deployment I want to see if there is a way to exclude some file. such as my read.me and notes don't need to be deployed. It might just need to be put in a different folder or something. 
+
+
 # Default notes under this
 ## CSS
 
