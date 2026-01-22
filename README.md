@@ -12,7 +12,7 @@ Do you want to impress your friends? Or maybe you are like me and have accidenta
 <img src="TempleMatchReadmePhotos/GameScreen.jpg" alt="Image of game screen" width="400" height="400">
 <img src="TempleMatchReadmePhotos/ScoreScreen.jpg" alt="Image of scores screen" width="400" height="400">
 
-These show the four main screens of my webapp. They will start at the home screen and can navigate to the start screen by loging in. After that they can go to the game screen or the scores screen 
+These show the four main screens of my webapp. They will start at the home screen and can navigate to the start screen by logging in. After that they can go to the game screen or the scores screen 
 
 ### Key features
 
@@ -27,11 +27,11 @@ These show the four main screens of my webapp. They will start at the home scree
 I am going to use the required technologies in the following ways.
 
 - **HTML** - Will be used for the structure of the 4 webpages.
-- **CSS** - Will be used to make the pages look profesional and hopefuly the animation of the cards fliping over
-- **React** - This is going to be used for the navigation buttons and posibly the cards fliping over
-- **Service** - Going to call an API to get a random scripture to display there are two bible API on the list that was linked to. There is also an open scripture api I found but I don't know if that is compatable. Also we will need to retreve user scores and data from the database
+- **CSS** - Will be used to make the pages look professional and hopefully the animation of the cards flipping over
+- **React** - This is going to be used for the navigation buttons and possibly the cards flipping over
+- **Service** - Going to call an API to get a random scripture to display there are two bible API on the list that was linked to. There is also an open scripture api I found but I don't know if that is compatible. Also we will need to retrieve user scores and data from the database
 - **DB/Login** - Store the account info for each player and there data such as High scores and most missed and most correct matches 
-- **WebSocket** - Sharing scoring data. if another player gets a Personal best or a High score it brodcasts it so everyone can celebrate! Also displaing the number of pepole currently on. (Not sure if this is websocket)
+- **WebSocket** - Sharing scoring data. if another player gets a Personal best or a High score it broadcasts it so everyone can celebrate! Also displaying the number of people currently on. (Not sure if this is websocket)
 ## 🚀 Specification Deliverable
 
 > [!NOTE]
