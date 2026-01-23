@@ -54,7 +54,7 @@ margin-top: 0%;
 margin-bottom: 0%;
 background-color: #82C8E5;
 section{
-
+    border: black solid 2px;
     background-color: rgba(161, 153, 151, 0.882);
     padding-left: 25%;
     padding-right: 25%;
@@ -85,11 +85,20 @@ form{
     align-items: center;
     justify-content: center;
     gap: 10px;
+    
+    
+    input{
+    
+        border-radius: 10px;
+        border: rgba(96, 95, 95, 0.796);
+      }
 
     
     div {
       display: flex;
       flex-direction: column;
+      
+      
     }
   }
 
@@ -164,7 +173,8 @@ button{
   bottom: 20px;    /* 20px from the bottom edge */
   right: 20px;
 }
-
+#learnMoreButton:hover ,#beInspiredButton:hover {
+    background-color: #a7a9ac;
 
 
 
