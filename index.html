@@ -15,11 +15,13 @@
 
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-custom">
+      
        <a class="navbar-brand" href="index.html">
-    <img src="temple icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-    Temple Match
+    <img src="temple icon.svg" width="50" height="50" class="d-inline-block align-top ms-3" alt="" >
+    
   </a>
+  <h1>Temple Match</h1>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -44,28 +46,37 @@
 
 
 <main>
-<section>
+<div class = login>
+  <div class = box>
 <h1>Welcome to Temple Match</h1>
-<form action="/submit" method="get">
-    <div id ="loginBox">
-        <input type="text" name="username" placeholder="Username" />
-    
-        <input type="password" name="password" placeholder="Password" />
-    </div>
-    <div>
-    <button type="submit" id = "loginButton">Login</button>
-    <button type="submit" id = "createButton">Create</button>
-    </div>
+<form>
+  <div class="form-group">
+    <label for="inputUsername">Username</label>
+    <input type="text" class="form-control" id="inputUsername" aria-describedby="emailHelp" placeholder="Enter username">
+  </div>
+  <div class="form-group">
+    <label for="InputPassword1">Password</label>
+    <input type="password" class="form-control" id="InputPassword1" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+   <button type="submit" class="btn btn-secondary">Create Account</button>
 </form>
-</section>
+</div>
+</div>
 
+
+<div class="button holder">
+
+<div class ="leftbutton">
 <a href="https://www.churchofjesuschrist.org/comeuntochrist/article/temples" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Learn more</a>
 
+</div>
+<div class ="rightbutton">
  <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary btn-lg " data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
   Be Inspired
 </button>
-
+</div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -88,6 +99,8 @@
   </div>
 </div>
 
+</div>
+
 </main>
 
 
@@ -99,12 +112,6 @@
     
 </footer>
 
-
-<button type="button">Plain</button>
- <button type="button" class="btn btn-outline-primary">Bootstrap</button>
-
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
- 
 </body>
+</html>
