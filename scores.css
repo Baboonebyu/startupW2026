@@ -23,16 +23,20 @@ nav {
         margin-right: 1%;
     }
 }
-
+.center{
+    display: flex;
+      flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .titleBox{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
-    padding: 2em;
+    padding: .5em;
     background-color: azure;
     border-radius: 30px;
     h2{
@@ -41,14 +45,18 @@ nav {
 }
 
 .statsBox{
+    height: 85vh;
      flex: 1 calc(100vh - 160px);
     display: flex;
     flex-direction: column;
       justify-content: center;
     align-items: center;
+    margin-top: 1vh;
+    margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
-    padding: 2em;
+    align-items: center;
+    
     background-color: rgba(161, 153, 151, 0.882);
     border-radius: 30px;
    
@@ -98,12 +106,3 @@ h3{
 
 
 
-
-footer {
-  flex: 0 80px;
-  background-color: rgb(240, 245, 181);
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
