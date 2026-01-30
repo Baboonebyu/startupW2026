@@ -1,49 +1,21 @@
 *{font-family: Georgia, 'Times New Roman', Times, serif;}
-header{
-    display: flex;
-    text-align: center;
-    justify-content: left;
-    align-items: center;
-    background-color: rgb(240, 245, 181);
-    
+header {
+  flex: 0 80px;
+}
+nav {
 
-
-    img{
+  flex: 0 80px;
+  background-color: rgb(240, 245, 181);
+  height: 10vh;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+    h1{
         margin-left: 1%;
-        margin-top: auto;
-        margin-bottom: auto;
-        width: 3em;
-        height: 3em;    
-        align-items: center;
-            }
-            
-            h1{
-              margin-top: auto;
-              margin-bottom: auto;
-              font-size: 2em;
-
-            }
-
-
-            p{
-                margin-left: auto;
-                margin-right: auto;
-                font-size: 2em;
-            }
-            
-    div{
-        margin-left: auto;
         margin-right: 1%;
-        button{
-            background-color: rgb(255, 255, 255);
-        }
-        button:hover{
-            background-color: rgb(181, 181, 181);
-        }
+    }
+}
 
-
-            }
-  }
 
   body{
     flex: auto;
@@ -56,6 +28,7 @@ header{
     background-color: #82C8E5;
     padding-top: 0.5em;
     padding-bottom: 2em;
+  }
   body{margin: 0%;
   padding: 0%;
   }
@@ -103,7 +76,6 @@ header{
   border: 2px solid #777777;
   
 }
-}
-}
+
 
 
