@@ -1,0 +1,25 @@
+*{font-family: Georgia, 'Times New Roman', Times, serif;}
+body {
+  display: flex;
+  flex-direction: column;
+  min-width: 375px;
+  background-color: #82C8E5;
+  overflow: hidden;
+;
+}
+header {
+  flex: 0 80px;
+}
+nav {
+
+  flex: 0 80px;
+  background-color: rgb(240, 245, 181);
+  height: 10vh;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+    h1{
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+}
