@@ -86,6 +86,31 @@ nav {
   max-width: 200px;
   margin: 20px;
   height: 20vh;
+  display: none;
+}
+.mobileHolder{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.websocketInfoMobile{
+  background-color: azure;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 200px;
+  display: none;
+  margin: auto;
+  height: auto
+ 
+
 }
 
 
+@media screen and (max-width: 599px) {
+  .websocketInfoMobile { display: block; }
+}
+@media screen and (min-width: 1024px) {
+  .websocketInfo { display: block; }
+}
