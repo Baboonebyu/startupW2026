@@ -9,7 +9,7 @@
      <style>
         
      </style>
-     <link rel="stylesheet" href="scores.css" />
+    <link rel="stylesheet" href="scores.css" />
 
 </head>
 <header>
@@ -20,7 +20,7 @@
     
   </a>
   <h1>Temple Match</h1>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
@@ -44,20 +44,27 @@
 
 
 
-
 <body>
+    <div class ="titleBox">
+    <h2>High Scores</h2>
+    </div>
     
 
 
     <div class="statsBox">
         <div class ="center">
-        <div class ="titleBox">
-    <h2>High Scores</h2>
-    </div>
-    <div class="tables">
-        <div class="personal">
-              <h3>Personal Bests</h3>
-    <table>
+        
+
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+            <h3>Personal Bests</h3>
+    <table class="table table-dark table-striped">
         
       
         <tr>
@@ -80,27 +87,54 @@
             <td>3:55</td>
             <td>05/20/2024</td>
         </tr>
+         <tr>
+            <td>4</td>
+            <td>3:55</td>
+            <td>05/20/2024</td>
+        </tr>
+         <tr>
+            <td>5</td>
+            <td>3:55</td>
+            <td>05/20/2024</td>
+        </tr>
     </table>
-    <h3>Temple Stats</h3>
-    <table>
+    </div>
+    <div class="carousel-item">
+     
+           <h3>Temple Stats</h3>
+    <table  class="table table-dark table-striped">
         
         <tr>
             <th>Best Temples</th>
             <th>Worst Temples</th>
         </tr>
         <tr>
-            <td>Salt Lake Temple - 100%</td>
-            <td>Provo Temple - 13%</td>
+            <td>Salt Lake - 100%</td>
+            <td>Provo  - 13%</td>
         </tr>
          <tr>
             <td>Manti - 90%</td>
-            <td>City center Temple - 12%</td>
+            <td>City center  - 12%</td>
+        </tr>
+        <tr>
+            <td>Manti - 90%</td>
+            <td>City center  - 12%</td>
+        </tr>
+        <tr>
+            <td>Manti - 90%</td>
+            <td>City center  - 12%</td>
+        </tr>
+        <tr>
+            <td>Manti - 90%</td>
+            <td>City center  - 12%</td>
         </tr>
     </table>
+
+
     </div>
-    <div class="global">
-        <h3>Global Bests</h3>
-<table>
+    <div class="carousel-item">
+             <h3>Global Bests</h3>
+<table  class="table table-dark table-striped">
         
         <tr>
             <th>Rank</th>
@@ -123,13 +157,13 @@
         <tr>
             <td>3</td>
             <td>2:10</td>
-            <td>Brother Brigham</td>
+            <td>Bro. Brigham</td>
             <td>05/20/2024</td>
         </tr>
         <tr>
             <td>3</td>
             <td>2:30</td>
-            <td>Brother Brigham</td>
+            <td>Bro. Brigham</td>
             <td>02/20/2024</td>
         </tr>
         <tr>
@@ -140,8 +174,12 @@
         </tr>
     </table>
     </div>
-    </div>
-    </div>
-    </div>
+  </div>
+
+</div>
+
+
+
 
 </body>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
