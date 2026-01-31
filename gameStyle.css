@@ -19,6 +19,7 @@ nav {
 
   body{
     flex: auto;
+  
     overflow: hidden;
     height: 100vh;
     margin: 0%;
@@ -28,6 +29,7 @@ nav {
     background-color: #82C8E5;
     padding-top: 0.5em;
     padding-bottom: 2em;
+    display: flex
   }
   body{margin: 0%;
   padding: 0%;
@@ -37,9 +39,9 @@ nav {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  width: 85vmin;   /* keeps the whole board square */
-  height: 85vmin;  /* keeps the whole board square */
-  margin: 0 auto;  /* centers it */
+  width: 85vmin;   
+  height: 85vmin;  
+  margin: 0 auto;  
 
   grid-gap: .2em;
 
@@ -67,7 +69,7 @@ nav {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: clamp(1rem, 3vw, 2.5rem)
+    font-size: clamp(1rem, 3vw, 2rem)
      
   }
 }
@@ -76,6 +78,14 @@ nav {
   border: 2px solid #777777;
   
 }
-
+.websocketInfo{
+     position: relative; 
+  background-color: azure;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 200px;
+  margin: 20px;
+  height: 20vh;
+}
 
 
