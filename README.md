@@ -69,12 +69,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Visually appealing colors and layout. No overflowing elements.** - I did not complete this part of the deliverable.
-- [ ] **Use of a CSS framework** - I did not complete this part of the deliverable.
-- [ ] **All visual elements styled using CSS** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing using flexbox and/or grid display** - I did not complete this part of the deliverable.
-- [ ] **Use of a imported font** - I did not complete this part of the deliverable.
-- [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
+- [x] **Visually appealing colors and layout. No overflowing elements.** - Color theory is not a strength of mine but I did this
+- [x] **Use of a CSS framework** - I used bootstrap and it was a lifesaver.
+- [x] **All visual elements styled using CSS** -As far as I can tell I don't have any html styling left. I got rid of the lines and such.
+- [X] **Responsive to window resizing using flexbox and/or grid display** - Might not by 100% perfect but I got it to work. I have a bootstrap header that adjusts and then I have a box that moves spots on one of my pages. The Grid worked great for the gameboard.
+- [X] **Use of a imported font** - I imported a font family
+- [X] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I have lots of div's and I used class and Id selectors and some bootstrap element selectors.
 
 ## 🚀 React part 1: Routing deliverable
 
