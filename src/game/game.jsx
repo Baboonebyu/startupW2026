@@ -3,7 +3,7 @@ import './gameStyle.css';
 
 export function Game() {
   return (
-    <main className="container-fluid  text-center">
+    <main className="container-fluid  text-center gameMain">
               <div className ="websocketInfo">
 <p> websocketstuff</p>
 <p>player gets high score</p>
