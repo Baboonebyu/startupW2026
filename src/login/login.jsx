@@ -35,7 +35,7 @@ export function Login() {
 </button>
 </div>
 
-<div className="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div className="modal fade" id="exampleModalCenter" tabIndex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered">
     <div className="modal-content">
       
@@ -46,12 +46,11 @@ export function Login() {
 
       <div className="modal-body">
         <h1>Inspirational scripture</h1>
-<p>And they said, Believe on the Lord Jesus Christ, and thou shalt be saved, and thy house.</p>
-<p>Acts 16:31
-    The be Inspired will pull up a scripture from a 3rd party ap
-</p>
+        <p>And they said, Believe on the Lord Jesus Christ, and thou shalt be saved, and thy house.</p>
+        <p>Acts 16:31</p>
+        <p>The "Be Inspired" button will pull up a scripture from a 3rd party API.</p>
 
-      </div>
+        </div>
 
 
     </div>
