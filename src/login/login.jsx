@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Login() {
   return (
-    <main className="container-fluid bg-secondary text-center">
+    <main className="container-fluid  text-center">
       <div className="login">
   <div className="box">
 <h1>Welcome to Temple Match</h1>
