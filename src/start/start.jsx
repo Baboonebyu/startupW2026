@@ -2,9 +2,9 @@ import React from 'react';
 import './start.css';
 export function Play() {
   return (
-    <main className="container-fluid  text-center startMain">
+    <main className=" body container-fluid  text-center startMain">
       
-    <div className="box">
+    <div className="boxStart">
 
 
     <h1>
