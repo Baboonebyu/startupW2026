@@ -2,9 +2,9 @@ import React from 'react';
 import './start.css';
 export function Play() {
   return (
-    <main className="container-fluid  text-center">
+    <main className="container-fluid  text-center startMain">
       
-    <div class="box">
+    <div className="box">
 
 
     <h1>
@@ -12,7 +12,7 @@ export function Play() {
         Match?
     </h1>
     
-    <a href="game" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Let's go!</a>
+    <a href="game" className="btn btn-primary btn-lg" role="button" aria-pressed="true">Let's go!</a>
 
 
 
