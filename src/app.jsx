@@ -16,10 +16,10 @@ export default function App() {
    <header>
     <nav className="navbar navbar-expand-lg navbar-light bg-custom">
       
-       <a className="navbar-brand" href="index.html">
-    <img src="temple icon.svg" width="50" height="50" className="d-inline-block align-top ms-3" alt="" ></img>
+       <NavLink className="nav-link" to="">
+        <img src="temple icon.svg" width="50" height="50" className="d-inline-block align-top ms-3" alt="" ></img>
+      </NavLink>
     
-  </a>
   <h1>Temple Match</h1>
   <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
