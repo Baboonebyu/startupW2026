@@ -31,11 +31,12 @@ Css is the bane of my existence. Bootstrap was a big help but getting things cen
 
 I also used a bootstrap popup to replace my scripture.html page. I also had issues with the bootstrap stuff I found was the wrong version. I used the AI to help me convert the version syntax.
 
-# Default notes under this
+
 ## React Part 1: Routing
 
-Setting up Vite and React was pretty simple. I had a bit of trouble because of conflicting CSS. This isn't as straight forward as you would find with Svelte or Vue, but I made it work in the end. If there was a ton of CSS it would be a real problem. It sure was nice to have the code structured in a more usable way.
+This wasn't too bad. I had to fix some Css. I had a class named box twice and that gave me some issues but once I got that a changed some of the flex on the game page it worked much better. ALso had to fix a link so it would work again when you click on my icon.
 
+# Default notes under this
 ## React Part 2: Reactivity
 
 This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
