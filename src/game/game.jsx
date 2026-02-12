@@ -2,16 +2,17 @@ import React from 'react';
 import './gameStyle.css';
 
 export function Game() {
+  const shuffledDeck = shuffleArray(Deck);
+  
   return (
     <main className="container-fluid  text-center gameMain">
               <div className ="websocketInfo">
-                <p>{Deck.length}</p>
 <p> websocketstuff</p>
 <p>player gets high score</p>
 
 </div>
         <div className="gameBoard">
-          {Deck.map((card, index) => (
+          {shuffledDeck.map((card, index) => (
             <div key={card.id} className="card">
               {card.image ? (
                 <img src={card.image} alt ="Temple" width="100%" height="100%" />
@@ -87,4 +88,25 @@ selectedTemples.forEach(temple => {
   Deck.push({id: temple.id, image: temple.image});
 }
 );
+
+function shuffleArray(array) {
+  // Create a shallow copy of the array to avoid mutating the original
+  const shuffledArray = [...array];
+  let currentIndex = shuffledArray.length;
+  let randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex > 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element using destructuring assignment.
+    [shuffledArray[currentIndex], shuffledArray[randomIndex]] = [
+      shuffledArray[randomIndex], shuffledArray[currentIndex]
+    ];
+  }
+
+  return shuffledArray;
+}
 
