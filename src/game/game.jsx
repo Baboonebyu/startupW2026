@@ -2,8 +2,47 @@ import React from 'react';
 import './gameStyle.css';
 
 export function Game() {
-  const shuffledDeck = shuffleArray(Deck);
-  
+  const [cards, setCards] = React.useState(shuffleArray(Deck));
+  const firstSelectedRef = React.useRef(false);
+  const secondSelectedRef = React.useRef(false);
+
+  function handleCardClick(card) {
+    console.log("Card clicked:", card.id);
+
+    if (firstSelectedRef.current === false) {
+      firstSelectedRef.current = card;
+      return;
+    } else if (secondSelectedRef.current === false) {
+      if (card === firstSelectedRef.current) {
+        console.log("Card already selected. Please choose a different card.");
+        return;
+      }
+      secondSelectedRef.current = card;
+
+      if (firstSelectedRef.current.id === secondSelectedRef.current.id) {
+        console.log("Match found!");
+        setCards(prev =>
+          prev.map(c =>
+            c === firstSelectedRef.current || c === secondSelectedRef.current
+              ? { ...c, isMatched: true }
+              : c
+          )
+        );
+        firstSelectedRef.current = false;
+        secondSelectedRef.current = false;
+      } else {
+        console.log("No match. Try again.");
+        firstSelectedRef.current = false;
+        secondSelectedRef.current = false;
+      }
+
+      return;
+    } else {
+      firstSelectedRef.current = card;
+      secondSelectedRef.current = false;
+      return;
+    }
+  }
   return (
     <main className="container-fluid  text-center gameMain">
               <div className ="websocketInfo">
@@ -12,25 +51,24 @@ export function Game() {
 
 </div>
         <div className="gameBoard">
-          {shuffledDeck.map((card, index) => (
-            <div key={card.id} className="card">
-              {card.image ? (
-                <img src={card.image} alt ="Temple" width="100%" height="100%" />
-              ) : (
-                <p>{card.name}</p>
-              )}
-            </div>
-          ))}
-
-        
-
-
-
+          {cards.map((card, index) => (
+  <div
+    key={card.id + "-" + index}
+    className={`card ${card.isMatched ? "hidden" : ""}`}
+    onClick={() => handleCardClick(card)}
+  >
+    {card.image ? (
+      <img src={card.image} alt="Temple" width="100%" height="100%" />
+    ) : (
+      <p>{card.name}</p>
+    )}
+  </div>
+))}
 
         </div>
-         <div class ="mobileHolder">
+         <div className ="mobileHolder">
 
-      <div class ="websocketInfoMobile">
+      <div className ="websocketInfoMobile">
 <p> websocketstuff</p>
 <p>player gets high score</p>
 
@@ -110,3 +148,5 @@ function shuffleArray(array) {
   return shuffledArray;
 }
 
+
+  

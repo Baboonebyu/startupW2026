@@ -48,6 +48,12 @@ nav {
   
 }
 
+.card.selected {
+  border: 2px solid #444444;
+  background-color: #e8e8e8;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+}
+
 .card {
   background-color: #f0f0f0;
   border: 2px solid #ccc;
@@ -77,6 +83,13 @@ nav {
   background-color: #afaeae;
   border: 2px solid #777777;
   
+}
+
+.card.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.98);
+  transition: opacity 200ms ease, transform 200ms ease;
 }
 .websocketInfo{
      position: relative; 
@@ -115,3 +128,6 @@ nav {
   .websocketInfo { display: block; }
   .gameMain {flex-direction: row; justify-content: center; align-items: flex-start;}
 }
+
+
+/* removed generic .hidden to avoid conflicting with .card.hidden */
