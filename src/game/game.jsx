@@ -11,6 +11,7 @@ export function Game() {
 
     if (firstSelectedRef.current === false) {
       firstSelectedRef.current = card;
+      stats[firstSelectedRef.current.id - 1].total += 1;
       return;
     } else if (secondSelectedRef.current === false) {
       if (card === firstSelectedRef.current) {
@@ -18,6 +19,7 @@ export function Game() {
         return;
       }
       secondSelectedRef.current = card;
+      stats[secondSelectedRef.current.id - 1].total += 1;
 
       if (firstSelectedRef.current.id === secondSelectedRef.current.id) {
         console.log("Match found!");
@@ -27,10 +29,12 @@ export function Game() {
         setCards(prev => prev.map(c =>
         (c.id === idA || c.id === idB) ? { ...c, isMatched: true } : c
         ));
-        refA.current = false;
-        refB.current = false;
+        stats[idA - 1].correct += 1;
+        stats[idB - 1].correct += 1;
+
         firstSelectedRef.current = false;
         secondSelectedRef.current = false;
+        localStorage.setItem("stats", JSON.stringify(stats));
       } else {
         console.log("No match. Try again.");
         firstSelectedRef.current = false;
@@ -149,5 +153,31 @@ function shuffleArray(array) {
   return shuffledArray;
 }
 
-
-  
+const stats = [
+  { id: 1, correct: 0, total: 0 },
+  { id: 2, correct: 0, total: 0 },
+  { id: 3, correct: 0, total: 0 },
+  { id: 4, correct: 0, total: 0 },
+  { id: 5, correct: 0, total: 0 },
+  { id: 6, correct: 0, total: 0 },
+  { id: 7, correct: 0, total: 0 },
+  { id: 8, correct: 0, total: 0 },
+  { id: 9, correct: 0, total: 0 },
+  { id: 10, correct: 0, total: 0 },
+  { id: 11, correct: 0, total: 0 },
+  { id: 12, correct: 0, total: 0 },
+  { id: 13, correct: 0, total: 0 },
+  { id: 14, correct: 0, total: 0 },
+  { id: 15, correct: 0, total: 0 },
+  { id: 16, correct: 0, total: 0 },
+  { id: 17, correct: 0, total: 0 },
+  { id: 18, correct: 0, total: 0 },
+  { id: 19, correct: 0, total: 0 },
+  { id: 20, correct: 0, total: 0 },
+  { id: 21, correct: 0, total: 0 },
+  { id: 22, correct: 0, total: 0 },
+  { id: 23, correct: 0, total: 0 },
+  { id: 24, correct: 0, total: 0 },
+  { id: 25, correct: 0, total: 0 },
+  { id: 26, correct: 0, total: 0 },
+];
