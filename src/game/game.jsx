@@ -21,13 +21,14 @@ export function Game() {
 
       if (firstSelectedRef.current.id === secondSelectedRef.current.id) {
         console.log("Match found!");
-        setCards(prev =>
-          prev.map(c =>
-            c === firstSelectedRef.current || c === secondSelectedRef.current
-              ? { ...c, isMatched: true }
-              : c
-          )
-        );
+        const idA = firstSelectedRef.current.id;
+        const idB = secondSelectedRef.current.id;
+
+        setCards(prev => prev.map(c =>
+        (c.id === idA || c.id === idB) ? { ...c, isMatched: true } : c
+        ));
+        refA.current = false;
+        refB.current = false;
         firstSelectedRef.current = false;
         secondSelectedRef.current = false;
       } else {
