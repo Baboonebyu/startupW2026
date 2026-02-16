@@ -121,7 +121,7 @@ nav {
 }
 
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 1024px) {
   .websocketInfoMobile { display: block; }
 }
 @media screen and (min-width: 1024px) {

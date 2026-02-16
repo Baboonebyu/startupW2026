@@ -1,25 +1,86 @@
-import React from 'react';
+
+
+import React, { useContext } from 'react';
+import { UserContext } from '../UserContext';
+import { Register, login } from '../services';
+import { useNavigate } from 'react-router-dom';
+
 
 export function Login() {
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+const [username, setUsername] = React.useState('');
+const [password, setPassword] = React.useState('');
+
+
+  function doLogin(){
+    const user = login(username, password);
+    if (user) {
+      setUser(user);
+      navigate('/play');
+     
+    } else {
+      alert('Invalid username or password');
+    }
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    // Register new user
+    Register(username, password);
+    doLogin();
+  }
+
+  function handleLogin(event) {
+    event.preventDefault();
+    // Attempt login
+    doLogin();
+    
+  }
+
+
+
+
+
+
+
+
   return (
     <main className="container-fluid  text-center">
       <div className="login">
   <div className="box">
 <h1>Welcome to Temple Match</h1>
-<form>
+<form onSubmit={handleLogin}>
   <div className="form-group">
     <label htmlFor="inputUsername">Username</label>
-    <input type="text" className="form-control" id="inputUsername" aria-describedby="emailHelp" placeholder="Enter username"></input>
+    <input type="text" className="form-control" id="inputUsername" aria-describedby="emailHelp" placeholder="Enter username" onChange={(e)=>setUsername(e.target.value)}></input>
   </div>
   <div className="form-group">
     <label htmlFor="InputPassword1">Password</label>
-    <input type="password" className="form-control" id="InputPassword1" placeholder="Password"></input>
+    <input type="password" className="form-control" id="InputPassword1" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}></input>
   </div>
-  <button type="submit" className="btn btn-primary">Submit</button>
-   <button type="submit" className="btn btn-secondary">Create Account</button>
+  <button type="submit" className="btn btn-primary">Login</button>
+  <button type="button" className="btn btn-secondary" onClick={handleSubmit}>Create Account</button>
 </form>
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <div className="button holder">

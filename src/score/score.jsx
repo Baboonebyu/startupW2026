@@ -1,7 +1,10 @@
 import React from 'react';
 import './scores.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { useContext } from 'react';
+import { UserContext } from '../UserContext';
 export function Scores() {
+  const { user } = useContext(UserContext);
   return (
     <main className="container-fluid  text-center">
       <div class ="titleBox">

@@ -1,7 +1,10 @@
 import React from 'react';
 import './gameStyle.css';
+import { useContext } from 'react';
+import { UserContext } from '../UserContext';
 
 export function Game() {
+  const { user, setUser } = useContext(UserContext);
   const [cards, setCards] = React.useState(shuffleArray(Deck));
   const firstSelectedRef = React.useRef(false);
   const secondSelectedRef = React.useRef(false);
