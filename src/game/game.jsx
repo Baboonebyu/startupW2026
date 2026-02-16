@@ -4,21 +4,26 @@ import './gameStyle.css';
 import { useContext } from 'react';
 import { UserContext } from '../UserContext';
 import Stopwatch from './stopwatch';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 export function Game() {
   const [isRunning, setIsRunning] = useState(true);
+  const [elapsed, setElapsed] = useState(0);
+  const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
   const [cards, setCards] = React.useState(shuffleArray(Deck));
   const firstSelectedRef = React.useRef(false);
   const secondSelectedRef = React.useRef(false);
+  
 
   useEffect(() => {
     if (cards.every(card => card.isMatched)) {
       setIsRunning(false);
-      alert(`Congratulations, ${user.username}! You've matched all the temples!`);
+      navigate('/replay', { state: { elapsed } });
+      
     }
-  }, [cards, user.username]);
+  }, [cards, user.username, elapsed]);
 
 
   function handleCardClick(card) {
@@ -66,7 +71,7 @@ export function Game() {
   return (
     <main className="container-fluid  text-center gameMain">
               <div className ="websocketInfo">
-                <Stopwatch isRunning={isRunning} setIsRunning={setIsRunning} />
+               <Stopwatch isRunning={isRunning} setIsRunning={setIsRunning} elapsed={elapsed} setElapsed={setElapsed} />
 <p> websocketstuff</p>
 <p>player gets high score</p>
 
@@ -90,7 +95,7 @@ export function Game() {
          <div className ="mobileHolder">
 
       <div className ="websocketInfoMobile">
-        <Stopwatch isRunning={isRunning} setIsRunning={setIsRunning} />
+        <Stopwatch isRunning={isRunning} setIsRunning={setIsRunning} elapsed={elapsed} setElapsed={setElapsed} />
 <p> websocketstuff</p>
 <p>player gets high score</p>
 

@@ -1,3 +1,10 @@
+.replay-btn-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 1em;
+}
 *{font-family: Georgia, 'Times New Roman', Times, serif;}
 .body {
   display: flex;

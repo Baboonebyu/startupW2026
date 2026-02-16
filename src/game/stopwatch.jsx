@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-function Stopwatch({ isRunning, setIsRunning }) {
+function Stopwatch({ isRunning, setIsRunning, elapsed, setElapsed }) {
  
-  const [elapsed, setElapsed] = useState(0);
+
   const intervalRef = useRef(null);
 
   useEffect(() => {

@@ -7,7 +7,9 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Play } from './start/start';
 import { Scores } from './score/score';
+
 import { Game } from './game/game';
+import { Replay } from './Replay/replay';
 
   
 export default function App() {
@@ -74,6 +76,7 @@ export default function App() {
             <Route path='/play' element={<Play />} />
             <Route path='/scores' element={<Scores />} />
             <Route path='/game' element={<Game />} />
+            <Route path='/replay' element={<Replay />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
           <footer>
