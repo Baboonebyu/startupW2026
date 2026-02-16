@@ -1,14 +1,25 @@
-import React from 'react';
+
+import React, { use, useState } from 'react';
 import './gameStyle.css';
 import { useContext } from 'react';
 import { UserContext } from '../UserContext';
-import Stopwatch from './Stopwatch';
+import Stopwatch from './stopwatch';
+import { useEffect } from 'react';
 
 export function Game() {
+  const [isRunning, setIsRunning] = useState(true);
   const { user, setUser } = useContext(UserContext);
   const [cards, setCards] = React.useState(shuffleArray(Deck));
   const firstSelectedRef = React.useRef(false);
   const secondSelectedRef = React.useRef(false);
+
+  useEffect(() => {
+    if (cards.every(card => card.isMatched)) {
+      setIsRunning(false);
+      alert(`Congratulations, ${user.username}! You've matched all the temples!`);
+    }
+  }, [cards, user.username]);
+
 
   function handleCardClick(card) {
     console.log("Card clicked:", card.id);
@@ -55,7 +66,7 @@ export function Game() {
   return (
     <main className="container-fluid  text-center gameMain">
               <div className ="websocketInfo">
-                <Stopwatch />
+                <Stopwatch isRunning={isRunning} setIsRunning={setIsRunning} />
 <p> websocketstuff</p>
 <p>player gets high score</p>
 
@@ -79,7 +90,7 @@ export function Game() {
          <div className ="mobileHolder">
 
       <div className ="websocketInfoMobile">
-        <Stopwatch />
+        <Stopwatch isRunning={isRunning} setIsRunning={setIsRunning} />
 <p> websocketstuff</p>
 <p>player gets high score</p>
 

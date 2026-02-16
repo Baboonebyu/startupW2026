@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-function Stopwatch() {
-  const [isRunning, setIsRunning] = useState(false);
+function Stopwatch({ isRunning, setIsRunning }) {
+ 
   const [elapsed, setElapsed] = useState(0);
   const intervalRef = useRef(null);
 
@@ -30,9 +30,6 @@ function Stopwatch() {
   return (
     <div>
       <h2>{formatTime(elapsed)}</h2>
-      <button onClick={() => setIsRunning(true)}>Start</button>
-      <button onClick={() => setIsRunning(false)}>Stop</button>
-      <button onClick={() => { setElapsed(0); setIsRunning(false); }}>Reset</button>
     </div>
   );
 }
