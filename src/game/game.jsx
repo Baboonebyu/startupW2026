@@ -54,7 +54,7 @@ export function Game() {
 
         firstSelectedRef.current = false;
         secondSelectedRef.current = false;
-        localStorage.setItem("stats", JSON.stringify(stats));
+        saveUserStats(user.username, stats);
       } else {
         console.log("No match. Try again.");
         firstSelectedRef.current = false;
@@ -174,6 +174,21 @@ function shuffleArray(array) {
 
   return shuffledArray;
 }
+
+
+// Save stats for the current user in localStorage, supporting multiple users
+function saveUserStats(username, stats) {
+  // Get all user stats from localStorage or initialize an empty object
+  const allUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
+  // Update the stats for the current user
+  allUserStats[username] = stats;
+  // Save back to localStorage
+  localStorage.setItem('userStats', JSON.stringify(allUserStats));
+}
+
+// Example usage: saveUserStats(user.username, stats);
+
+
 
 const stats = [
   { id: 1, correct: 0, total: 0 },
