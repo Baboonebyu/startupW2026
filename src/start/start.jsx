@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './start.css';
+import { UserContext } from '../UserContext';
 export function Play() {
+    const { user } = useContext(UserContext);
   return (
     <main className=" body container-fluid  text-center startMain">
       
@@ -8,6 +10,9 @@ export function Play() {
 
 
     <h1>
+        Welcome, {user.username}!
+        </h1>
+        <h1>
         Ready to
         Match?
     </h1>
