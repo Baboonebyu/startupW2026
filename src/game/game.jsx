@@ -2,6 +2,7 @@ import React from 'react';
 import './gameStyle.css';
 import { useContext } from 'react';
 import { UserContext } from '../UserContext';
+import Stopwatch from './Stopwatch';
 
 export function Game() {
   const { user, setUser } = useContext(UserContext);
@@ -54,6 +55,7 @@ export function Game() {
   return (
     <main className="container-fluid  text-center gameMain">
               <div className ="websocketInfo">
+                <Stopwatch />
 <p> websocketstuff</p>
 <p>player gets high score</p>
 
@@ -77,6 +79,7 @@ export function Game() {
          <div className ="mobileHolder">
 
       <div className ="websocketInfoMobile">
+        <Stopwatch />
 <p> websocketstuff</p>
 <p>player gets high score</p>
 
