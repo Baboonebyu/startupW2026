@@ -28,9 +28,17 @@ const [password, setPassword] = React.useState('');
   function handleSubmit(event) {
     event.preventDefault();
     // Register new user
+    if (isTaken) {
+      alert('Username already taken');
+      return;
+    }
     Register(username, password);
     doLogin();
   }
+
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  const isTaken = users.some(user => user.username === username);
+
 
   function handleLogin(event) {
     event.preventDefault();
