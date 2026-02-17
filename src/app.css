@@ -1,3 +1,9 @@
+/* Always gray out the logout link, even when active */
+.logout-link,
+.logout-link.active {
+  color: #6c757d !important; /* Bootstrap's .nav-link default gray */
+  pointer-events: auto;
+}
 *{font-family: Georgia, 'Times New Roman', Times, serif;}
 .body {
   display: flex;

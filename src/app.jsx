@@ -60,6 +60,11 @@ export default function App() {
                       Scores
                     </NavLink>
                   </li>
+                  <li className="nav-item">
+                    <NavLink className="nav-link logout-link" to="/" onClick={() => setUser(null)}>
+                      Logout
+                    </NavLink>
+                  </li>
                   {/*
                   <li className="nav-item">
                     <NavLink className="nav-link" to="game">
@@ -80,7 +85,7 @@ export default function App() {
             <Route path='*' element={<NotFound />} />
           </Routes>
           <footer>
-            <div><span className="text-reset">Created by Benjamin</span>
+            <div><span className="text-reset">Created by Benjamin </span>
               <a href="https://github.com/Baboonebyu/startupW2026">GitHub</a></div>
           </footer>
         </div>
