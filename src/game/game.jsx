@@ -15,7 +15,41 @@ export function Game() {
   const [cards, setCards] = React.useState(shuffleArray(Deck));
   const firstSelectedRef = React.useRef(false);
   const secondSelectedRef = React.useRef(false);
-  
+
+  // Initialize stats from localStorage for the current user
+  const [stats, setStats] = useState(() => {
+    const allUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
+    return (user && user.username && allUserStats[user.username])
+      ? allUserStats[user.username]
+      : [
+          { id: 1, correct: 0, total: 0 },
+          { id: 2, correct: 0, total: 0 },
+          { id: 3, correct: 0, total: 0 },
+          { id: 4, correct: 0, total: 0 },
+          { id: 5, correct: 0, total: 0 },
+          { id: 6, correct: 0, total: 0 },
+          { id: 7, correct: 0, total: 0 },
+          { id: 8, correct: 0, total: 0 },
+          { id: 9, correct: 0, total: 0 },
+          { id: 10, correct: 0, total: 0 },
+          { id: 11, correct: 0, total: 0 },
+          { id: 12, correct: 0, total: 0 },
+          { id: 13, correct: 0, total: 0 },
+          { id: 14, correct: 0, total: 0 },
+          { id: 15, correct: 0, total: 0 },
+          { id: 16, correct: 0, total: 0 },
+          { id: 17, correct: 0, total: 0 },
+          { id: 18, correct: 0, total: 0 },
+          { id: 19, correct: 0, total: 0 },
+          { id: 20, correct: 0, total: 0 },
+          { id: 21, correct: 0, total: 0 },
+          { id: 22, correct: 0, total: 0 },
+          { id: 23, correct: 0, total: 0 },
+          { id: 24, correct: 0, total: 0 },
+          { id: 25, correct: 0, total: 0 },
+          { id: 26, correct: 0, total: 0 },
+        ];
+  });
 
   useEffect(() => {
     if (cards.every(card => card.isMatched)) {
@@ -31,7 +65,8 @@ export function Game() {
 
     if (firstSelectedRef.current === false) {
       firstSelectedRef.current = card;
-      stats[firstSelectedRef.current.id - 1].total += 1;
+      const newStats = stats.map((s, idx) => idx === (card.id - 1) ? { ...s, total: s.total + 1 } : s);
+      setStats(newStats);
       return;
     } else if (secondSelectedRef.current === false) {
       if (card === firstSelectedRef.current) {
@@ -39,7 +74,8 @@ export function Game() {
         return;
       }
       secondSelectedRef.current = card;
-      stats[secondSelectedRef.current.id - 1].total += 1;
+      const newStats2 = stats.map((s, idx) => idx === (card.id - 1) ? { ...s, total: s.total + 1 } : s);
+      setStats(newStats2);
 
       if (firstSelectedRef.current.id === secondSelectedRef.current.id) {
         console.log("Match found!");
@@ -47,14 +83,16 @@ export function Game() {
         const idB = secondSelectedRef.current.id;
 
         setCards(prev => prev.map(c =>
-        (c.id === idA || c.id === idB) ? { ...c, isMatched: true } : c
+          (c.id === idA || c.id === idB) ? { ...c, isMatched: true } : c
         ));
-        stats[idA - 1].correct += 1;
-        stats[idB - 1].correct += 1;
+        const newStats3 = newStats2.map((s, idx) =>
+          (idx === (idA - 1) || idx === (idB - 1)) ? { ...s, correct: s.correct + 1 } : s
+        );
+        setStats(newStats3);
 
         firstSelectedRef.current = false;
         secondSelectedRef.current = false;
-        saveUserStats(user.username, stats);
+        saveUserStats(user.username, newStats3);
       } else {
         console.log("No match. Try again.");
         firstSelectedRef.current = false;
@@ -186,35 +224,5 @@ function saveUserStats(username, stats) {
   localStorage.setItem('userStats', JSON.stringify(allUserStats));
 }
 
-// Example usage: saveUserStats(user.username, stats);
 
 
-
-const stats = [
-  { id: 1, correct: 0, total: 0 },
-  { id: 2, correct: 0, total: 0 },
-  { id: 3, correct: 0, total: 0 },
-  { id: 4, correct: 0, total: 0 },
-  { id: 5, correct: 0, total: 0 },
-  { id: 6, correct: 0, total: 0 },
-  { id: 7, correct: 0, total: 0 },
-  { id: 8, correct: 0, total: 0 },
-  { id: 9, correct: 0, total: 0 },
-  { id: 10, correct: 0, total: 0 },
-  { id: 11, correct: 0, total: 0 },
-  { id: 12, correct: 0, total: 0 },
-  { id: 13, correct: 0, total: 0 },
-  { id: 14, correct: 0, total: 0 },
-  { id: 15, correct: 0, total: 0 },
-  { id: 16, correct: 0, total: 0 },
-  { id: 17, correct: 0, total: 0 },
-  { id: 18, correct: 0, total: 0 },
-  { id: 19, correct: 0, total: 0 },
-  { id: 20, correct: 0, total: 0 },
-  { id: 21, correct: 0, total: 0 },
-  { id: 22, correct: 0, total: 0 },
-  { id: 23, correct: 0, total: 0 },
-  { id: 24, correct: 0, total: 0 },
-  { id: 25, correct: 0, total: 0 },
-  { id: 26, correct: 0, total: 0 },
-];
