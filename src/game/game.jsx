@@ -54,23 +54,8 @@ export function Game() {
   useEffect(() => {
     if (cards.every(card => card.isMatched) && isRunning) {
       setIsRunning(false);
-      // Get the existing array or start with an empty array
-      const globalBests = JSON.parse(localStorage.getItem('globalBests')) || [];
-
-      // Create your new result object
-      const newResult = {
-        username: user.username,
-        time: elapsed,
-        date: new Date().toLocaleDateString() 
-      };
-
-      // Add the new result to the array
-      globalBests.push(newResult);
-      globalBests.sort((a, b) => a.time - b.time); // Sort by time, fastest first
-      globalBests.splice(5); // Keep only the top 5 results
-
-      // Save the updated array back to localStorage
-      localStorage.setItem('globalBests', JSON.stringify(globalBests));
+      saveGlobalBest(user.username, elapsed);
+      saveUsersBests(user.username, elapsed);
 
       navigate('/replay', { state: { elapsed } });
     }
@@ -243,4 +228,39 @@ function saveUserStats(username, stats) {
 }
 
 
+function saveGlobalBest(username, time) {
+  const globalBests = JSON.parse(localStorage.getItem('globalBests')) || [];
+  const newResult = {
+    username,
+    time,
+    date: new Date().toLocaleDateString()
+  };
+  globalBests.push(newResult);
+  globalBests.sort((a, b) => a.time - b.time);
+  globalBests.splice(5); // Keep only top 5
+  localStorage.setItem('globalBests', JSON.stringify(globalBests));
+}
 
+function saveUsersBests(username, time) {
+  // Load the object from localStorage or start with an empty object
+  const usersBests = JSON.parse(localStorage.getItem('usersBests')) || {};
+
+  // Get this user's array or start with an empty array
+  const userTimes = usersBests[username] || [];
+
+  // Add the new result
+  userTimes.push({
+    time,
+    date: new Date().toLocaleDateString()
+  });
+
+  // Sort and keep only the top 5 (lowest times)
+  userTimes.sort((a, b) => a.time - b.time);
+  userTimes.splice(5);
+
+  // Save back to the object
+  usersBests[username] = userTimes;
+
+  // Save the whole object to localStorage
+  localStorage.setItem('usersBests', JSON.stringify(usersBests));
+}

@@ -10,7 +10,8 @@ export function Scores() {
     const [percentCorrectArray, setPercentCorrectArray] = useState([]);
     // Load global bests from localStorage
     const globalBests = JSON.parse(localStorage.getItem('globalBests')) || [];
-
+    const usersBests = JSON.parse(localStorage.getItem('usersBests')) || {};
+    const currentUserBests = user ? usersBests[user.username] || [] : [];
     // Helper to format ms to mm:ss:cc
     function formatTime(ms) {
         const minutes = Math.floor(ms / 60000);
@@ -64,30 +65,30 @@ export function Scores() {
                                         </tr>
                                         <tr>
                                             <td>1</td>
-                                            <td>1:45</td>
-                                            <td>05/28/2024</td>
+                                            <td>{currentUserBests[0]?.time !== undefined ? formatTime(currentUserBests[0].time) : 'N/A'}</td>
+                                            <td>{currentUserBests[0]?.date || 'N/A'}</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td>3:45</td>
-                                            <td>05/28/2026</td>
+                                            <td>{currentUserBests[1]?.time !== undefined ? formatTime(currentUserBests[1].time) : 'N/A'}</td>
+                                            <td>{currentUserBests[1]?.date || 'N/A'}</td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td>3:55</td>
-                                            <td>05/20/2024</td>
+                                            <td>{currentUserBests[2]?.time !== undefined ? formatTime(currentUserBests[2].time) : 'N/A'}</td>
+                                            <td>{currentUserBests[2]?.date || 'N/A'}</td>
                                         </tr>
                                         <tr>
                                             <td>4</td>
-                                            <td>3:55</td>
-                                            <td>05/20/2024</td>
+                                            <td>{currentUserBests[3]?.time !== undefined ? formatTime(currentUserBests[3].time) : 'N/A'}</td>
+                                            <td>{currentUserBests[3]?.date || 'N/A'}</td>
                                         </tr>
                                         <tr>
                                             <td>5</td>
-                                            <td>3:55</td>
-                                            <td>05/20/2024</td>
+                                            <td>{currentUserBests[4]?.time !== undefined ? formatTime(currentUserBests[4].time) : 'N/A'}</td>
+                                            <td>{currentUserBests[4]?.date || 'N/A'}</td>
                                         </tr>
-                                    </table>
+                                                                            </table>
                                 </div>
                             )}
                             {!isLocked && (
@@ -192,6 +193,11 @@ function grabUserMatchStats(user) {
 function grabGlobalBestTimes() {
     const globalBests = JSON.parse(localStorage.getItem('globalBests')) || [];
     return globalBests
+}
+
+function grabUserBestTimes() {
+    const usersBests = JSON.parse(localStorage.getItem('usersBests')) || [];
+    return usersBests.username ? usersBests : [];
 }
 
 
