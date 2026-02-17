@@ -52,12 +52,28 @@ export function Game() {
   });
 
   useEffect(() => {
-    if (cards.every(card => card.isMatched)) {
+    if (cards.every(card => card.isMatched) && isRunning) {
       setIsRunning(false);
+      // Get the existing array or start with an empty array
+      const globalBests = JSON.parse(localStorage.getItem('globalBests')) || [];
+
+      // Create your new result object
+      const newResult = {
+        username: user.username,
+        time: elapsed, 
+      };
+
+      // Add the new result to the array
+      globalBests.push(newResult);
+      globalBests.sort((a, b) => a.time - b.time); // Sort by time, fastest first
+      globalBests.splice(5); // Keep only the top 5 results
+
+      // Save the updated array back to localStorage
+      localStorage.setItem('globalBests', JSON.stringify(globalBests));
+
       navigate('/replay', { state: { elapsed } });
-      
     }
-  }, [cards, user.username, elapsed]);
+  }, [cards, user.username, elapsed, isRunning]);
 
 
   function handleCardClick(card) {
@@ -94,6 +110,7 @@ export function Game() {
         secondSelectedRef.current = false;
         saveUserStats(user.username, newStats3);
       } else {
+        setElapsed(prev => prev + 5000);
         console.log("No match. Try again.");
         firstSelectedRef.current = false;
         secondSelectedRef.current = false;
