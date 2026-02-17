@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './scores.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useContext } from 'react';
 import { UserContext } from '../UserContext';
+
 export function Scores() {
     const { user } = useContext(UserContext);
     const isLocked = !user;
+    const [percentCorrectArray, setPercentCorrectArray] = useState([]);
+
+    useEffect(() => {
+        if (user) {
+            setPercentCorrectArray(grabUserMatchStats(user));
+        } else {
+            setPercentCorrectArray([]);
+        }
+    }, [user]);
+
     return (
         <main className="container-fluid text-center">
             <div className="titleBox">
@@ -68,6 +79,7 @@ export function Scores() {
                             {!isLocked && (
                                 <div className="carousel-item">
                                     <h3>Temple Stats</h3>
+                                 
                                     <table className="table table-dark table-striped">
                                         <tr>
                                             <th>Best Temples</th>
@@ -144,3 +156,46 @@ export function Scores() {
         </main>
     );
 }
+
+function grabUserMatchStats(user) {
+    const allUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
+    const userStats = allUserStats[user.username] || [];
+    const percentCorrectArray = [];
+    for (const stats of userStats) {
+        const percentCorrect = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+        percentCorrectArray.push({ id: stats.id, percentCorrect });
+    }
+  
+    console.log(percentCorrectArray);
+    return percentCorrectArray;
+}
+
+
+const Temples = [
+    {id : 1, name: "Bountiful"},
+    {id : 2, name: "Brigham City"},
+    {id : 3, name: "Layton"},
+    {id : 4, name: "Logan"},
+    {id : 5, name: "Salt Lake"},
+    {id : 6, name: "Ogden"},
+    {id : 7, name: "Smithfield"},
+    {id : 8, name: "Syracuse"},
+    {id : 9, name: "Cedar City"},
+    {id : 10, name: "Draper"},
+    {id : 11, name: "Jordan River"},
+    {id : 12, name: "Deseret Peaks"},
+    {id : 13, name: "Manti"},
+    {id : 14, name: "Monticello"},
+    {id : 15, name: "Ephraim"},
+    {id : 16, name: "Payson"},
+    {id : 17, name: "Provo City Center"},
+    {id : 18, name: "Lindon"},
+    {id : 19, name: "Mt. Timpanogos"},
+    {id : 20, name: "Oquirrh Mountain"},
+    {id : 21, name: "Orem"},
+    {id : 22, name: "Red Cliffs"},
+    {id : 23, name: "Saratoga Springs"},
+    {id : 24, name: "St. George"},
+    {id : 25, name: "Vernal"},
+    {id : 26, name: "Taylorsville"},
+]
