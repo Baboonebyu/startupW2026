@@ -60,7 +60,8 @@ export function Game() {
       // Create your new result object
       const newResult = {
         username: user.username,
-        time: elapsed, 
+        time: elapsed,
+        date: new Date().toLocaleDateString() 
       };
 
       // Add the new result to the array

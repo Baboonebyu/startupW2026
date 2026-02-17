@@ -8,6 +8,20 @@ export function Scores() {
     const { user } = useContext(UserContext);
     const isLocked = !user;
     const [percentCorrectArray, setPercentCorrectArray] = useState([]);
+    // Load global bests from localStorage
+    const globalBests = JSON.parse(localStorage.getItem('globalBests')) || [];
+
+    // Helper to format ms to mm:ss:cc
+    function formatTime(ms) {
+        const minutes = Math.floor(ms / 60000);
+        const seconds = Math.floor((ms % 60000) / 1000);
+        const centiseconds = Math.floor((ms % 1000) / 10);
+        return (
+            `${minutes.toString().padStart(2, '0')}:` +
+            `${seconds.toString().padStart(2, '0')}:` +
+            `${centiseconds.toString().padStart(2, '0')}`
+        );
+    }
 
     useEffect(() => {
         if (user) {
@@ -123,33 +137,33 @@ export function Scores() {
                                     </tr>
                                     <tr>
                                         <td>1</td>
-                                        <td>1:23</td>
-                                        <td>Noah</td>
-                                        <td>06/01/2024</td>
+                                        <td>{globalBests[0]?.time !== undefined ? formatTime(globalBests[0].time) : 'N/A'}</td>
+                                        <td>{globalBests[0]?.username || 'N/A'}</td>
+                                        <td>{globalBests[0]?.date || 'N/A'}</td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td>1:45</td>
-                                        <td>Emma</td>
-                                        <td>05/28/2024</td>
+                                        <td>{globalBests[1]?.time !== undefined ? formatTime(globalBests[1].time) : 'N/A'}</td>
+                                        <td>{globalBests[1]?.username || 'N/A'}</td>
+                                        <td>{globalBests[1]?.date || 'N/A'}</td>
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td>2:10</td>
-                                        <td>Bro. Brigham</td>
-                                        <td>05/20/2024</td>
+                                        <td>{globalBests[2]?.time !== undefined ? formatTime(globalBests[2].time) : 'N/A'}</td>
+                                        <td>{globalBests[2]?.username || 'N/A'}</td>
+                                        <td>{globalBests[2]?.date || 'N/A'}</td>
                                     </tr>
                                     <tr>
-                                        <td>3</td>
-                                        <td>2:30</td>
-                                        <td>Bro. Brigham</td>
-                                        <td>02/20/2024</td>
+                                        <td>4</td>
+                                        <td>{globalBests[3]?.time !== undefined ? formatTime(globalBests[3].time) : 'N/A'}</td>
+                                        <td>{globalBests[3]?.username || 'N/A'}</td>
+                                        <td>{globalBests[3]?.date || 'N/A'}</td>
                                     </tr>
                                     <tr>
-                                        <td>3</td>
-                                        <td>2:40</td>
-                                        <td>Enos</td>
-                                        <td>02/01/2024</td>
+                                        <td>5</td>
+                                        <td>{globalBests[4]?.time !== undefined ? formatTime(globalBests[4].time) : 'N/A'}</td>
+                                        <td>{globalBests[4]?.username || 'N/A'}</td>
+                                        <td>{globalBests[4]?.date || 'N/A'}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -175,7 +189,10 @@ function grabUserMatchStats(user) {
     return percentCorrectArray;
 }
 
-function grab
+function grabGlobalBestTimes() {
+    const globalBests = JSON.parse(localStorage.getItem('globalBests')) || [];
+    return globalBests
+}
 
 
 const Temples = [
