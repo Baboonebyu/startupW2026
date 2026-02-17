@@ -86,24 +86,28 @@ export function Scores() {
                                             <th>Worst Temples</th>
                                         </tr>
                                         <tr>
-                                            <td>Salt Lake - 100%</td>
-                                            <td>Provo  - 13%</td>
+                                            <td>
+                                            {percentCorrectArray[0]
+                                                ? `${Temples.find(t => t.id === percentCorrectArray[0].id)?.name || 'Unknown'} - ${percentCorrectArray[0].percentCorrect}%`
+                                                : 'N/A'}
+                                            </td>
+                                            <td>{Temples.find(t => t.id === percentCorrectArray[percentCorrectArray.length - 1]?.id)?.name || 'Unknown'} - {percentCorrectArray[percentCorrectArray.length - 1] ? percentCorrectArray[percentCorrectArray.length - 1].percentCorrect : 'N/A'}%</td>
                                         </tr>
                                         <tr>
-                                            <td>Manti - 90%</td>
-                                            <td>City center  - 12%</td>
+                                            <td>{Temples.find(t => t.id === percentCorrectArray[1]?.id)?.name || 'Unknown'} - {percentCorrectArray[1] ? percentCorrectArray[1].percentCorrect : 'N/A'}%</td>
+                                            <td>{Temples.find(t => t.id === percentCorrectArray[percentCorrectArray.length - 2]?.id)?.name || 'Unknown'} - {percentCorrectArray[percentCorrectArray.length - 2] ? percentCorrectArray[percentCorrectArray.length - 2].percentCorrect : 'N/A'}%</td>
                                         </tr>
                                         <tr>
-                                            <td>Manti - 90%</td>
-                                            <td>City center  - 12%</td>
+                                            <td>{Temples.find(t => t.id === percentCorrectArray[2]?.id)?.name || 'Unknown'} - {percentCorrectArray[2] ? percentCorrectArray[2].percentCorrect : 'N/A'}%</td>
+                                            <td>{Temples.find(t => t.id === percentCorrectArray[percentCorrectArray.length - 3]?.id)?.name || 'Unknown'} - {percentCorrectArray[percentCorrectArray.length - 3] ? percentCorrectArray[percentCorrectArray.length - 3].percentCorrect : 'N/A'}%</td>
                                         </tr>
                                         <tr>
-                                            <td>Manti - 90%</td>
-                                            <td>City center  - 12%</td>
+                                            <td>{Temples.find(t => t.id === percentCorrectArray[3]?.id)?.name || 'Unknown'} - {percentCorrectArray[3] ? percentCorrectArray[3].percentCorrect : 'N/A'}%</td>
+                                            <td>{Temples.find(t => t.id === percentCorrectArray[percentCorrectArray.length - 4]?.id)?.name || 'Unknown'} - {percentCorrectArray[percentCorrectArray.length - 4] ? percentCorrectArray[percentCorrectArray.length - 4].percentCorrect : 'N/A'}%</td>
                                         </tr>
                                         <tr>
-                                            <td>Manti - 90%</td>
-                                            <td>City center  - 12%</td>
+                                            <td>{Temples.find(t => t.id === percentCorrectArray[4]?.id)?.name || 'Unknown'} - {percentCorrectArray[4] ? percentCorrectArray[4].percentCorrect : 'N/A'}%</td>
+                                            <td>{Temples.find(t => t.id === percentCorrectArray[percentCorrectArray.length - 5]?.id)?.name || 'Unknown'} - {percentCorrectArray[percentCorrectArray.length - 5] ? percentCorrectArray[percentCorrectArray.length - 5].percentCorrect : 'N/A'}%</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -162,13 +166,16 @@ function grabUserMatchStats(user) {
     const userStats = allUserStats[user.username] || [];
     const percentCorrectArray = [];
     for (const stats of userStats) {
-        const percentCorrect = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+        const percentCorrect = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 100;
         percentCorrectArray.push({ id: stats.id, percentCorrect });
     }
   
     console.log(percentCorrectArray);
+    percentCorrectArray.sort((a, b) => b.percentCorrect - a.percentCorrect);
     return percentCorrectArray;
 }
+
+function grab
 
 
 const Temples = [
