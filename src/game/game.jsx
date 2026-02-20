@@ -1,4 +1,3 @@
-
 import React, { use, useState } from 'react';
 import './gameStyle.css';
 import { useContext } from 'react';
@@ -15,6 +14,8 @@ export function Game() {
   const [cards, setCards] = React.useState(shuffleArray(Deck));
   const firstSelectedRef = React.useRef(false);
   const secondSelectedRef = React.useRef(false);
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [selectedIndexes, setSelectedIndexes] = useState([]);
 
   // Initialize stats from localStorage for the current user
   const [stats, setStats] = useState(() => {
@@ -62,27 +63,29 @@ export function Game() {
   }, [cards, user.username, elapsed, isRunning]);
 
 
-  function handleCardClick(card) {
+  function handleCardClick(card, index) {
     console.log("Card clicked:", card.id);
 
     if (firstSelectedRef.current === false) {
-      firstSelectedRef.current = card;
+      firstSelectedRef.current = { card, index };
+      setSelectedIndexes([index]);
       const newStats = stats.map((s, idx) => idx === (card.id - 1) ? { ...s, total: s.total + 1 } : s);
       setStats(newStats);
       return;
     } else if (secondSelectedRef.current === false) {
-      if (card === firstSelectedRef.current) {
+      if (index === firstSelectedRef.current.index) {
         console.log("Card already selected. Please choose a different card.");
         return;
       }
-      secondSelectedRef.current = card;
+      secondSelectedRef.current = { card, index };
+      setSelectedIndexes([firstSelectedRef.current.index, index]);
       const newStats2 = stats.map((s, idx) => idx === (card.id - 1) ? { ...s, total: s.total + 1 } : s);
       setStats(newStats2);
 
-      if (firstSelectedRef.current.id === secondSelectedRef.current.id) {
+      if (firstSelectedRef.current.card.id === secondSelectedRef.current.card.id) {
         console.log("Match found!");
-        const idA = firstSelectedRef.current.id;
-        const idB = secondSelectedRef.current.id;
+        const idA = firstSelectedRef.current.card.id;
+        const idB = secondSelectedRef.current.card.id;
 
         setCards(prev => prev.map(c =>
           (c.id === idA || c.id === idB) ? { ...c, isMatched: true } : c
@@ -94,18 +97,21 @@ export function Game() {
 
         firstSelectedRef.current = false;
         secondSelectedRef.current = false;
+        setSelectedIndexes([]);
         saveUserStats(user.username, newStats3);
       } else {
         setElapsed(prev => prev + 5000);
         console.log("No match. Try again.");
         firstSelectedRef.current = false;
         secondSelectedRef.current = false;
+        setSelectedIndexes([]);
       }
 
       return;
     } else {
-      firstSelectedRef.current = card;
+      firstSelectedRef.current = { card, index };
       secondSelectedRef.current = false;
+      setSelectedIndexes([index]);
       return;
     }
   }
@@ -121,8 +127,8 @@ export function Game() {
           {cards.map((card, index) => (
   <div
     key={card.id + "-" + index}
-    className={`card ${card.isMatched ? "hidden" : ""}`}
-    onClick={() => handleCardClick(card)}
+    className={`card ${card.isMatched ? "hidden" : ""} ${selectedIndexes.includes(index) ? "selected" : ""}`}
+    onClick={() => handleCardClick(card, index)}
   >
     {card.image ? (
       <img src={card.image} alt="Temple" width="100%" height="100%" />
