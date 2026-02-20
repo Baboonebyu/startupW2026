@@ -2,7 +2,7 @@
 
 import React, { useContext } from 'react';
 import { UserContext } from '../UserContext';
-import { Register, login } from '../services';
+import { Register, login, getRandomScripture } from '../services';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -12,6 +12,8 @@ export function Login() {
 
 const [username, setUsername] = React.useState('');
 const [password, setPassword] = React.useState('');
+const [randomScripture, setRandomScripture] = React.useState(null);
+
 
 
   function doLogin(){
@@ -45,6 +47,11 @@ const [password, setPassword] = React.useState('');
     // Attempt login
     doLogin();
     
+  }
+
+  function handleGetScripture() {
+    const scripture = getRandomScripture();
+    setRandomScripture(scripture);
   }
 
 
@@ -99,7 +106,7 @@ const [password, setPassword] = React.useState('');
 </div>
 <div className ="rightbutton">
 
-<button type="button" className="btn btn-primary btn-lg " data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+<button type="button" className="btn btn-primary btn-lg " data-bs-toggle="modal" data-bs-target="#exampleModalCenter" onClick={handleGetScripture}>
   Be Inspired
 </button>
 </div>
@@ -109,17 +116,19 @@ const [password, setPassword] = React.useState('');
     <div className="modal-content">
       
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalCenterTitle">Inspirational scripture</h5>
+        
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div className="modal-body">
         <h1>Inspirational scripture</h1>
-        <p>And they said, Believe on the Lord Jesus Christ, and thou shalt be saved, and thy house.</p>
-        <p>Acts 16:31</p>
-        <p>The "Be Inspired" button will pull up a scripture from a 3rd party API.</p>
-
-        </div>
+        {randomScripture && (
+          <>
+            <p>{randomScripture.Text}</p>
+            <p>{randomScripture.Reference}</p>
+          </>
+        )}
+      </div>
 
 
     </div>
@@ -129,4 +138,7 @@ const [password, setPassword] = React.useState('');
 </div>
     </main>
   );
+
+ 
 }
+ 
