@@ -99,7 +99,7 @@ export function Game() {
           (c.id === idA || c.id === idB) ? { ...c, isMatched: true } : c
         ));
         const newStats3 = newStats2.map((s, idx) =>
-          (idx === (idA - 1) || idx === (idB - 1)) ? { ...s, correct: s.correct + 1 } : s
+          (idx === (idA - 1) || idx === (idB - 1)) ? { ...s, correct: s.correct + 2 } : s
         );
         setStats(newStats3);
 
