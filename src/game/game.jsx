@@ -12,10 +12,18 @@ export function Game() {
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
   const [cards, setCards] = React.useState(shuffleArray(Deck));
+  const [lastThreeMessages, setLastThreeMessages] = useState([
+    "Emma got a new best of 1:45!",
+    "Noah got a new best of 2:10!",
+    "John got a new best of 1:30!",
+  ]);
   const firstSelectedRef = React.useRef(false);
   const secondSelectedRef = React.useRef(false);
   const [selectedIds, setSelectedIds] = useState([]);
   const [selectedIndexes, setSelectedIndexes] = useState([]);
+
+
+
 
   // Initialize stats from localStorage for the current user
   const [stats, setStats] = useState(() => {
@@ -115,12 +123,27 @@ export function Game() {
       return;
     }
   }
+  function updateMessages(newMessage) {
+    setLastThreeMessages(prev => {
+      const next = [...prev, newMessage];
+      return next.length > 3 ? next.slice(next.length - 3) : next;
+    });
+  }
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      updateMessages(randomUpdateMessages());
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <main className="container-fluid  text-center gameMain">
               <div className ="websocketInfo">
                <Stopwatch isRunning={isRunning} setIsRunning={setIsRunning} elapsed={elapsed} setElapsed={setElapsed} />
-<p> websocketstuff</p>
-<p>player gets high score</p>
+<p>{lastThreeMessages[0]}</p>
+<p>{lastThreeMessages[1]}</p>
+<p>{lastThreeMessages[2]}</p>
 
 </div>
         <div className="gameBoard">
@@ -143,8 +166,11 @@ export function Game() {
 
       <div className ="websocketInfoMobile">
         <Stopwatch isRunning={isRunning} setIsRunning={setIsRunning} elapsed={elapsed} setElapsed={setElapsed} />
-<p> websocketstuff</p>
-<p>player gets high score</p>
+
+<p>{lastThreeMessages[0]}</p>
+<p>{lastThreeMessages[1]}</p>
+<p>{lastThreeMessages[2]}</p>
+
 
 </div>
     </div>
@@ -270,3 +296,23 @@ function saveUsersBests(username, time) {
   // Save the whole object to localStorage
   localStorage.setItem('usersBests', JSON.stringify(usersBests));
 }
+
+
+function randomUpdateMessages() {
+  const randomIndex = Math.floor(Math.random() * hardcodedmessages.length);
+  return hardcodedmessages[randomIndex];
+}
+
+const hardcodedmessages = [
+  "Emma got a new best of 1:45!",
+  "Noah got a new best of 2:10!",
+  "John got a new best of 1:30!",
+  "Sophia got a new best of 1:50!",
+  "Liam got a new best of 2:00!",
+  "Olivia got a new best of 1:40!",
+  "Ava got a new best of 1:55!",
+  "Isabella got a new best of 1:35!",
+  "Mia got a new best of 2:05!",
+  "Ethan got a new best of 1:25!",
+  
+]

@@ -96,9 +96,9 @@ nav {
   background-color: azure;
   padding: 10px;
   border-radius: 10px;
-  max-width: 200px;
+  max-width: 250px;
   margin: 20px;
-  height: 20vh;
+  height: 21vh;
   display: none;
 }
 .mobileHolder{
@@ -112,7 +112,7 @@ nav {
   background-color: azure;
   padding: 10px;
   border-radius: 10px;
-  max-width: 200px;
+  max-width: 250px;
   display: none;
   margin: auto;
   height: auto
@@ -126,11 +126,32 @@ nav {
 
 
 @media screen and (max-width: 1024px) {
-  .websocketInfoMobile { display: block; }
+  .websocketInfoMobile {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    min-height: 90px;
+    row-gap: 0;
+  }
+  .websocketInfo { display: none; }
 }
 @media screen and (min-width: 1024px) {
-  .websocketInfo { display: block; }
+  .websocketInfo {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    min-height: 90px;
+    row-gap: 0;
+    height: 200px;
+    width: 250px;
+    max-width: 250px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .websocketInfoMobile { display: none; }
   .gameMain {flex-direction: row; justify-content: center; align-items: flex-start;}
 }
 
 
+.websocketInfo p,
+.websocketInfoMobile p {
+  margin: 0;
+}
