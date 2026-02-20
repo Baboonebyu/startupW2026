@@ -88,8 +88,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - The game now works and is playable, the stats will update. The users are stored in local data along with everything else. I have fake websocket messages that come in from a list of default ones I made. I also have the be inspired scripture show one of 3 scriptures at random until we do the API section.
+- [x] **Hooks** - UseState, UseEffect, and UseContext were all used and it allows the game to work and live render thing from my understanding.
 
 ## 🚀 Service deliverable
 

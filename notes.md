@@ -34,31 +34,11 @@ I also used a bootstrap popup to replace my scripture.html page. I also had issu
 
 ## React Part 1: Routing
 
-This wasn't too bad. I had to fix some Css. I had a class named box twice and that gave me some issues but once I got that a changed some of the flex on the game page it worked much better. ALso had to fix a link so it would work again when you click on my icon.
+This wasn't too bad. I had to fix some Css. I had a class named box twice and that gave me some issues but once I got that a changed some of the flex on the game page it worked much better. ALso had to fix a link so it would work again when you click on my icon on the nav bar.
 
-# Default notes under this
+
 ## React Part 2: Reactivity
 
-This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
+This was hard. I have decided I do not want to be a front end developer. Also event based programming doesn't fully make sense to me yet but it is starting to get better. I much prefer object oriented programming. I feel like If I was learning it separate from JSX it would be better as with all the tags and such it is hard. I did find AI to be very helpful with figuring out the syntax. It was really cool to see it work now. This is the first program/game that I have made that has had much of a visual gui kinda idea with it. Im interested to see how much effort it takes to use the database to store info rather than putting it in local storage.
 
-Handling the toggling of the checkboxes was particularly interesting.
-
-```jsx
-<div className="input-group sound-button-container">
-  {calmSoundTypes.map((sound, index) => (
-    <div key={index} className="form-check form-switch">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        value={sound}
-        id={sound}
-        onChange={() => togglePlay(sound)}
-        checked={selectedSounds.includes(sound)}
-      ></input>
-      <label className="form-check-label" htmlFor={sound}>
-        {sound}
-      </label>
-    </div>
-  ))}
-</div>
-```
+I think the hardest thing was figuring out hooks but from what I understand if you want something to happen plan on using one. use state and effect we the most useful one. I did use a usecontext one but I think I could have used local storage for that and just read from it. 
