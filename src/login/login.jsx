@@ -2,7 +2,7 @@
 
 import React, { useContext } from 'react';
 import { UserContext } from '../UserContext';
-import { Register, login, getRandomScripture } from '../services';
+import { Register, login } from '../services';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -13,6 +13,7 @@ export function Login() {
 const [username, setUsername] = React.useState('');
 const [password, setPassword] = React.useState('');
 const [randomScripture, setRandomScripture] = React.useState(null);
+
 
 
 
@@ -50,8 +51,26 @@ const [randomScripture, setRandomScripture] = React.useState(null);
   }
 
   function handleGetScripture() {
-    const scripture = getRandomScripture();
-    setRandomScripture(scripture);
+
+    fetch('https://bible-api.com/data/web/random')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Scripture API response:', data);
+        const verse = data.random_verse;
+        const scripture = {
+          Text: verse.text,
+          Reference: verse.book + ' ' + verse.chapter + ':' + verse.verse
+        };
+        setRandomScripture(scripture);
+      })
+      .catch(() => {
+        setRandomScripture({ Text: 'Failed to load scripture.', Reference: '' });
+      });
+    
+
+
+
+    
   }
 
 
