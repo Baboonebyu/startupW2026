@@ -60,16 +60,18 @@ export default function App() {
                       Scores
                     </NavLink>
                   </li>
+                  {user && (
                   <li className="nav-item">
                     <NavLink className="nav-link logout-link" to="/" onClick={() => setUser(null)}>
                       Logout
                     </NavLink>
                   </li>
+                  )}
                   {/*
                   <li className="nav-item">
                     <NavLink className="nav-link" to="game">
                       Game
-                    </NavLink>
+                    </NavLink>v 
                   </li>
                   */}
                 </ul>
