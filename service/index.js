@@ -6,6 +6,9 @@ const app = express();
 const authCookieName = 'token';
 
 let users = [];
+let globalScores = [];
+let userScores = [];
+let userStats = [];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -57,6 +60,42 @@ apiRouter.post('/auth/login', async (req, res) => {
   }
   res.status(401).send({ msg: 'Unauthorized' });
 });
+
+// Logout endpoint
+apiRouter.delete('/auth/logout', async (req, res) => {
+
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (user) {
+    delete user.token;
+  }
+  res.clearCookie(authCookieName);
+  res.status(204).end();
+});
+
+const verifyToken = async (req, res, next) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+
+  if (!user) {
+    return res.status(401).send({ msg: 'Unauthorized' });
+  }
+
+  req.user = user;
+  next();
+};
+
+//get scores
+apiRouter.get('/scores', verifyToken, (req, res) => {});
+
+//save scores
+
+
+
+
+
+
+
+
+
 
 
 
