@@ -28,6 +28,7 @@ const [randomScripture, setRandomScripture] = React.useState(null);
     });
     if (response.ok) {
       const user = await response.json();
+      console.log('User after login:', user);
       setUser(user);
       navigate('/play');
     } else {
@@ -64,17 +65,12 @@ const [randomScripture, setRandomScripture] = React.useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
-    // Register new user
-    if (isTaken) {
-      alert('Username already taken');
-      return;
-    }
+    // Register new user 
     await createUser(username, password);
     await doLogin();
   }
 
-  const users = JSON.parse(localStorage.getItem('users')) || [];
-  const isTaken = users.some(user => user.username === username);
+  
 
 
   async function handleLogin(event) {

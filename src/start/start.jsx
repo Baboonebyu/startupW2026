@@ -3,6 +3,7 @@ import './start.css';
 import { UserContext } from '../UserContext';
 export function Play() {
     const { user } = useContext(UserContext);
+    console.log('User in start page:', user);
   return (
     <main className=" body container-fluid  text-center startMain">
       
