@@ -17,36 +17,70 @@ const [randomScripture, setRandomScripture] = React.useState(null);
 
 
 
-  function doLogin(){
-    const user = login(username, password);
-    if (user) {
+  async function doLogin() {
+  try {
+    const response = await fetch('/api/auth/login', {
+      method: 'post',
+      body: JSON.stringify({ username, password }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    if (response.ok) {
+      const user = await response.json();
       setUser(user);
       navigate('/play');
-     
     } else {
       alert('Invalid username or password');
     }
+  } catch (error) {
+    alert('Login failed. Please try again.');
   }
+}
 
-  function handleSubmit(event) {
+ async function createUser(username, password) {
+  try {
+    const response = await fetch('/api/register', {
+      method: 'post',
+      body: JSON.stringify({ username, password }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    if (!response.ok) {
+      alert('Registration failed');
+    }
+  } catch (error) {
+    alert('Error registering user');
+  }
+}
+
+
+
+
+
+
+
+
+  async function handleSubmit(event) {
     event.preventDefault();
     // Register new user
     if (isTaken) {
       alert('Username already taken');
       return;
     }
-    Register(username, password);
-    doLogin();
+    await createUser(username, password);
+    await doLogin();
   }
 
   const users = JSON.parse(localStorage.getItem('users')) || [];
   const isTaken = users.some(user => user.username === username);
 
 
-  function handleLogin(event) {
+  async function handleLogin(event) {
     event.preventDefault();
     // Attempt login
-    doLogin();
+    await doLogin();
     
   }
 
