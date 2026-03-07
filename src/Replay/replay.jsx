@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import '../start/start.css';
 import { UserContext } from '../UserContext';
 import { useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 export function Replay() {
     const { user } = useContext(UserContext);
     const location = useLocation();
@@ -34,8 +35,8 @@ export function Replay() {
     </h2>
 
     <div className="replay-btn-row">
-      <a href="game" className="btn btn-primary btn-lg" role="button" aria-pressed="true">Play Again</a>
-      <a href="scores" className="btn btn-primary btn-lg" role="button" aria-pressed="true">View Stats</a>
+      <NavLink to="/game" className="btn btn-primary btn-lg" role="button" aria-pressed="true">Play Again</NavLink>
+      <NavLink to="/scores" className="btn btn-primary btn-lg" role="button" aria-pressed="true">View Stats</NavLink>
     </div>
 
 

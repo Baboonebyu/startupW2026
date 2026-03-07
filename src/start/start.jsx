@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import './start.css';
 import { UserContext } from '../UserContext';
+import { NavLink } from 'react-router-dom';
 export function Play() {
     const { user } = useContext(UserContext);
     console.log('User in start page:', user);
@@ -19,7 +20,7 @@ export function Play() {
         Match?
     </h1>
     
-    <a href="game" className="btn btn-primary btn-lg" role="button" aria-pressed="true">Let's go!</a>
+    <NavLink to="/game" className="btn btn-primary btn-lg" role="button" aria-pressed="true">Let's go!</NavLink>
 
 
 

@@ -47,3 +47,5 @@ I think the hardest thing was figuring out hooks but from what I understand if y
 This was much easier and I feel like I am starting to understand fetch and promises now. I liked how doing a front and back end broke up the code and made it easier to understand. Figuring it out at the begain was still hard. For some reason it was really hard to get the username to display I still don't really know what fixed it but it was done. 
 
 Calling the 3rd party service was pretty easy. I just had to figure out how the response was formatted. It now shows a random KJV scripture. You might end up with one of the really random ones or one thats just names. 
+
+Had some issues with it running on the server. It had to do with nav links. not sure why they worked last time but not this time. It took me way to many deployments to get it working but now It is all done!
