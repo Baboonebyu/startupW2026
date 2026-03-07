@@ -261,16 +261,18 @@ function saveUserStats(username, stats) {
 
 
 function saveGlobalBest(username, time) {
-  const globalBests = JSON.parse(localStorage.getItem('globalBests')) || [];
+
+
   const newResult = {
     username,
     time,
     date: new Date().toLocaleDateString()
   };
-  globalBests.push(newResult);
-  globalBests.sort((a, b) => a.time - b.time);
-  globalBests.splice(5); // Keep only top 5
-  localStorage.setItem('globalBests', JSON.stringify(globalBests));
+
+  fetch('/api/globalScores', {
+    method: 'post',
+    body: JSON.stringify(newResult),
+    headers: { 'content-type': 'application/json'}});
 }
 
 function saveUsersBests(username, time) {

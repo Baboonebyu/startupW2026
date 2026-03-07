@@ -95,11 +95,10 @@ apiRouter.get('/globalScores', verifyToken, (req, res) => {
 //save global scores
 apiRouter.post('/globalScores', verifyToken, (req, res) => {
   globalScores.push(req.body);
-  globalScores.sort((a, b) => a.score - b.score);
+  globalScores.sort((a, b) => a.time - b.time);
   if (globalScores.length > 5) {
     globalScores.pop();
   }
- 
 });
 
 
