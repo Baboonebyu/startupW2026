@@ -11,7 +11,15 @@ let globalScores = [
   { username: 'SpeedySaint', time: 75000, date: '2026-03-07' },
   { username: 'ScriptureStar', time: 90000, date: '2026-03-07' }
 ];
-let userScores = [];
+let userScores = [
+  {
+    username: '123',
+    scores: [
+      { time: 60000, date: '2026-03-07' },
+      { time: 62000, date: '2026-03-08' }
+    ]
+  }
+];
 let userStats = [];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -101,10 +109,14 @@ apiRouter.post('/globalScores', verifyToken, (req, res) => {
   }
 });
 
+//get user scores
+apiRouter.get('/userScores', verifyToken, (req, res) => {
+  console.log('User in /userScores endpoint:', req.user);
+  const userScoresEntry = userScores.find(u => u.username === req.user.username);
+  res.send(userScoresEntry ? userScoresEntry.scores : []);
+});
 
-
-
-
+//save user scores
 
 
 

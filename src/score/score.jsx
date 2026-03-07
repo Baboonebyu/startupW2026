@@ -20,8 +20,19 @@ export function Scores() {
     }, []);
 
 
-    const usersBests = JSON.parse(localStorage.getItem('usersBests')) || {};
-    const currentUserBests = user ? usersBests[user.username] || [] : [];
+    const [usersBests, setUsersBests] = useState([]);
+
+    useEffect(() => {
+        if (user) {
+            fetch('/api/userScores')
+                .then((response) => response.json())
+                .then((scores) => {
+                    setUsersBests(scores);
+                });
+        }
+    }, [user]);
+
+    const currentUserBests = usersBests || [];
     // Helper to format ms to mm:ss:cc
     function formatTime(ms) {
         const minutes = Math.floor(ms / 60000);
@@ -198,16 +209,6 @@ function grabUserMatchStats(user) {
     console.log(percentCorrectArray);
     percentCorrectArray.sort((a, b) => b.percentCorrect - a.percentCorrect);
     return percentCorrectArray;
-}
-
-function grabGlobalBestTimes() {
-    const globalBests = JSON.parse(localStorage.getItem('globalBests')) || [];
-    return globalBests
-}
-
-function grabUserBestTimes() {
-    const usersBests = JSON.parse(localStorage.getItem('usersBests')) || [];
-    return usersBests.username ? usersBests : [];
 }
 
 
