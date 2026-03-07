@@ -6,7 +6,11 @@ const app = express();
 const authCookieName = 'token';
 
 let users = [];
-let globalScores = [];
+let globalScores = [
+  { username: 'TempleMaster', time: 60000, date: '2026-03-07' },
+  { username: 'SpeedySaint', time: 75000, date: '2026-03-07' },
+  { username: 'ScriptureStar', time: 90000, date: '2026-03-07' }
+];
 let userScores = [];
 let userStats = [];
 
@@ -83,14 +87,20 @@ const verifyToken = async (req, res, next) => {
   next();
 };
 
-//get scores
-apiRouter.get('/scores', verifyToken, (req, res) => {});
+//get global scores
+apiRouter.get('/globalScores', verifyToken, (req, res) => {
+  res.send(globalScores);
+});
 
-//save scores
-
-
-
-
+//save global scores
+apiRouter.post('/globalScores', verifyToken, (req, res) => {
+  globalScores.push(req.body);
+  globalScores.sort((a, b) => a.score - b.score);
+  if (globalScores.length > 5) {
+    globalScores.pop();
+  }
+ 
+});
 
 
 

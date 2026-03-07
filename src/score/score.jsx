@@ -8,8 +8,18 @@ export function Scores() {
     const { user } = useContext(UserContext);
     const isLocked = !user;
     const [percentCorrectArray, setPercentCorrectArray] = useState([]);
-    // Load global bests from localStorage
-    const globalBests = JSON.parse(localStorage.getItem('globalBests')) || [];
+    
+    const [globalBests, setGlobalBests] = useState([]);
+
+    useEffect(() => {
+        fetch('/api/globalScores')
+      .then((response) => response.json())
+      .then((scores) => {
+        setGlobalBests(scores);
+      });
+    }, []);
+
+
     const usersBests = JSON.parse(localStorage.getItem('usersBests')) || {};
     const currentUserBests = user ? usersBests[user.username] || [] : [];
     // Helper to format ms to mm:ss:cc
