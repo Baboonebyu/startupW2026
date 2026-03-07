@@ -9,17 +9,6 @@ export function Scores() {
     const isLocked = !user;
     const [percentCorrectArray, setPercentCorrectArray] = useState([]);
     
-    const [globalBests, setGlobalBests] = useState([]);
-
-    useEffect(() => {
-        fetch('/api/globalScores')
-      .then((response) => response.json())
-      .then((scores) => {
-        setGlobalBests(scores);
-      });
-    }, []);
-
-
     const [usersBests, setUsersBests] = useState([]);
 
     useEffect(() => {
@@ -31,6 +20,37 @@ export function Scores() {
                 });
         }
     }, [user]);
+
+
+
+
+
+    const [globalBests, setGlobalBests] = useState([]);
+
+    useEffect(() => {
+        fetch('/api/globalScores')
+      .then((response) => response.json())
+      .then((scores) => {
+        setGlobalBests(scores);
+      });
+    }, []);
+
+     const [stats, setStats] = useState([]);
+
+    useEffect(() => {
+        fetch('/api/userStats', {
+        method: 'get',
+        headers: { 'content-type': 'application/json' }
+        })
+        .then((response) => response.json())
+        .then((stats) => {
+            setStats(stats);
+        });
+    }, []);
+
+
+
+    
 
     const currentUserBests = usersBests || [];
     // Helper to format ms to mm:ss:cc
@@ -46,14 +66,24 @@ export function Scores() {
     }
 
     useEffect(() => {
-        if (user) {
-            setPercentCorrectArray(grabUserMatchStats(user));
+        if (user && stats.length > 0) {
+            // Calculate percent correct for each temple from stats
+            const percentArray = stats.map(s => ({
+                id: s.id,
+                percentCorrect: s.total > 0 ? Math.round((s.correct / s.total) * 100) : 100
+            }));
+            // Sort by percentCorrect descending
+            percentArray.sort((a, b) => b.percentCorrect - a.percentCorrect);
+            setPercentCorrectArray(percentArray);
         } else {
             setPercentCorrectArray([]);
         }
-    }, [user]);
+    }, [user, stats]);
 
     return (
+
+        
+
         <main className="container-fluid text-center">
             <div className="titleBox">
                 <h2>High Scores</h2>
@@ -197,19 +227,6 @@ export function Scores() {
     );
 }
 
-function grabUserMatchStats(user) {
-    const allUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
-    const userStats = allUserStats[user.username] || [];
-    const percentCorrectArray = [];
-    for (const stats of userStats) {
-        const percentCorrect = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 100;
-        percentCorrectArray.push({ id: stats.id, percentCorrect });
-    }
-  
-    console.log(percentCorrectArray);
-    percentCorrectArray.sort((a, b) => b.percentCorrect - a.percentCorrect);
-    return percentCorrectArray;
-}
 
 
 const Temples = [

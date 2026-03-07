@@ -43,7 +43,7 @@ export default function App() {
         <div className="body">
           <header>
             <nav className="navbar navbar-expand-lg navbar-light bg-custom">
-              <NavLink className="nav-link" to="">
+              <NavLink className="nav-link" to="" onClick={handleLogout}>
                 <img src="temple icon.svg" width="50" height="50" className="d-inline-block align-top ms-3" alt="" ></img>
               </NavLink>
               <h1>Temple Match</h1>
@@ -53,7 +53,7 @@ export default function App() {
               <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="">
+                    <NavLink className="nav-link" to="" onClick={handleLogout}>
                       Home
                     </NavLink>
                   </li>

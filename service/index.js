@@ -20,7 +20,38 @@ let userScores = [
     ]
   }
 ];
-let userStats = [];
+let userStats = [
+{username: '123', stats:    [
+          { id: 1, correct: 0, total: 0 },
+          { id: 2, correct: 0, total: 0 },
+          { id: 3, correct: 0, total: 0 },
+          { id: 4, correct: 0, total: 0 },
+          { id: 5, correct: 0, total: 0 },
+          { id: 6, correct: 0, total: 0 },
+          { id: 7, correct: 0, total: 0 },
+          { id: 8, correct: 0, total: 0 },
+          { id: 9, correct: 0, total: 0 },
+          { id: 10, correct: 0, total: 0 },
+          { id: 11, correct: 0, total: 0 },
+          { id: 12, correct: 0, total: 0 },
+          { id: 13, correct: 0, total: 0 },
+          { id: 14, correct: 0, total: 0 },
+          { id: 15, correct: 0, total: 0 },
+          { id: 16, correct: 0, total: 0 },
+          { id: 17, correct: 0, total: 0 },
+          { id: 18, correct: 0, total: 0 },
+          { id: 19, correct: 0, total: 0 },
+          { id: 20, correct: 0, total: 0 },
+          { id: 21, correct: 0, total: 0 },
+          { id: 22, correct: 0, total: 0 },
+          { id: 23, correct: 0, total: 0 },
+          { id: 24, correct: 0, total: 0 },
+          { id: 25, correct: 0, total: 0 },
+          { id: 26, correct: 0, total: 0 },
+        ]}
+
+
+];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -117,9 +148,66 @@ apiRouter.get('/userScores', verifyToken, (req, res) => {
 });
 
 //save user scores
+apiRouter.post('/userScores', verifyToken, (req, res) => {
+  const userScoresEntry = userScores.find(u => u.username === req.user.username);
+  if (userScoresEntry) {
+    userScoresEntry.scores.push(req.body);
+    userScoresEntry.scores.sort((a, b) => a.time - b.time);
+    if (userScoresEntry.scores.length > 5) {
+      userScoresEntry.scores.pop();
+    }
+  } else {
+    userScores.push({ username: req.user.username, scores: [req.body] });
+  }
+});
 
 
 
+//get user stats
+apiRouter.get('/userStats', verifyToken, (req, res) => {
+  console.log('User in /userStats endpoint:', req.user);
+  const userStatsEntry = userStats.find(u => u.username === req.user.username);
+  res.send(userStatsEntry ? userStatsEntry.stats : [
+          { id: 1, correct: 0, total: 0 },
+          { id: 2, correct: 0, total: 0 },
+          { id: 3, correct: 0, total: 0 },
+          { id: 4, correct: 0, total: 0 },
+          { id: 5, correct: 0, total: 0 },
+          { id: 6, correct: 0, total: 0 },
+          { id: 7, correct: 0, total: 0 },
+          { id: 8, correct: 0, total: 0 },
+          { id: 9, correct: 0, total: 0 },
+          { id: 10, correct: 0, total: 0 },
+          { id: 11, correct: 0, total: 0 },
+          { id: 12, correct: 0, total: 0 },
+          { id: 13, correct: 0, total: 0 },
+          { id: 14, correct: 0, total: 0 },
+          { id: 15, correct: 0, total: 0 },
+          { id: 16, correct: 0, total: 0 },
+          { id: 17, correct: 0, total: 0 },
+          { id: 18, correct: 0, total: 0 },
+          { id: 19, correct: 0, total: 0 },
+          { id: 20, correct: 0, total: 0 },
+          { id: 21, correct: 0, total: 0 },
+          { id: 22, correct: 0, total: 0 },
+          { id: 23, correct: 0, total: 0 },
+          { id: 24, correct: 0, total: 0 },
+          { id: 25, correct: 0, total: 0 },
+          { id: 26, correct: 0, total: 0 },
+        ]);
+});
+
+
+//save user stats
+apiRouter.post('/userStats', verifyToken, (req, res) => {
+  const userStatsEntry = userStats.find(u => u.username === req.user.username);
+  if (userStatsEntry) {
+    userStatsEntry.stats = req.body.stats;
+  } else {
+    userStats.push({ username: req.user.username, stats: req.body.stats });
+  }
+  res.status(200).send({ msg: 'Stats updated' });
+});
 
 async function findUser(lookup,value){
     if (!value) return null;

@@ -23,48 +23,39 @@ export function Game() {
   const [selectedIndexes, setSelectedIndexes] = useState([]);
 
 
+  
 
 
-  // Initialize stats from localStorage for the current user
-  const [stats, setStats] = useState(() => {
-    const allUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
-    return (user && user.username && allUserStats[user.username])
-      ? allUserStats[user.username]
-      : [
-          { id: 1, correct: 0, total: 0 },
-          { id: 2, correct: 0, total: 0 },
-          { id: 3, correct: 0, total: 0 },
-          { id: 4, correct: 0, total: 0 },
-          { id: 5, correct: 0, total: 0 },
-          { id: 6, correct: 0, total: 0 },
-          { id: 7, correct: 0, total: 0 },
-          { id: 8, correct: 0, total: 0 },
-          { id: 9, correct: 0, total: 0 },
-          { id: 10, correct: 0, total: 0 },
-          { id: 11, correct: 0, total: 0 },
-          { id: 12, correct: 0, total: 0 },
-          { id: 13, correct: 0, total: 0 },
-          { id: 14, correct: 0, total: 0 },
-          { id: 15, correct: 0, total: 0 },
-          { id: 16, correct: 0, total: 0 },
-          { id: 17, correct: 0, total: 0 },
-          { id: 18, correct: 0, total: 0 },
-          { id: 19, correct: 0, total: 0 },
-          { id: 20, correct: 0, total: 0 },
-          { id: 21, correct: 0, total: 0 },
-          { id: 22, correct: 0, total: 0 },
-          { id: 23, correct: 0, total: 0 },
-          { id: 24, correct: 0, total: 0 },
-          { id: 25, correct: 0, total: 0 },
-          { id: 26, correct: 0, total: 0 },
-        ];
+
+  const [stats, setStats] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/userStats', {
+      method: 'get',
+      headers: { 'content-type': 'application/json' }
+    })
+      .then((response) => response.json())
+      .then((scores) => {
+        setStats(scores);
+      });
+  }, []);
+
+  function saveUserStats(username, stats) {
+  fetch('/api/userStats', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ stats })
   });
+}
+
+
 
   useEffect(() => {
     if (cards.every(card => card.isMatched) && isRunning) {
       setIsRunning(false);
       saveGlobalBest(user.username, elapsed);
       saveUsersBests(user.username, elapsed);
+      saveUserStats(user.username, stats);
 
       navigate('/replay', { state: { elapsed } });
     }
@@ -249,16 +240,6 @@ function shuffleArray(array) {
 }
 
 
-// Save stats for the current user in localStorage, supporting multiple users
-function saveUserStats(username, stats) {
-  // Get all user stats from localStorage or initialize an empty object
-  const allUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
-  // Update the stats for the current user
-  allUserStats[username] = stats;
-  // Save back to localStorage
-  localStorage.setItem('userStats', JSON.stringify(allUserStats));
-}
-
 
 function saveGlobalBest(username, time) {
 
@@ -276,27 +257,19 @@ function saveGlobalBest(username, time) {
 }
 
 function saveUsersBests(username, time) {
-  // Load the object from localStorage or start with an empty object
-  const usersBests = JSON.parse(localStorage.getItem('usersBests')) || {};
+  
 
-  // Get this user's array or start with an empty array
-  const userTimes = usersBests[username] || [];
-
-  // Add the new result
-  userTimes.push({
+  const newResult = {
+    username,
     time,
     date: new Date().toLocaleDateString()
-  });
+  };
 
-  // Sort and keep only the top 5 (lowest times)
-  userTimes.sort((a, b) => a.time - b.time);
-  userTimes.splice(5);
-
-  // Save back to the object
-  usersBests[username] = userTimes;
-
-  // Save the whole object to localStorage
-  localStorage.setItem('usersBests', JSON.stringify(usersBests));
+  fetch('/api/userScores', {
+    method: 'post',
+    body: JSON.stringify(newResult),
+    headers: { 'content-type': 'application/json'}});
+  
 }
 
 
