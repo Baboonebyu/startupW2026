@@ -28,6 +28,15 @@ export default function App() {
     }
   }, [user]);
 
+  function handleLogout() {
+    
+    fetch('/api/auth/logout', {
+      method: 'delete',
+    });
+    setUser(null);
+    localStorage.removeItem('user');
+  }
+
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <BrowserRouter>
@@ -62,7 +71,7 @@ export default function App() {
                   </li>
                   {user && (
                   <li className="nav-item">
-                    <NavLink className="nav-link logout-link" to="/" onClick={() => setUser(null)}>
+                    <NavLink className="nav-link logout-link" to="/" onClick={handleLogout}>
                       Logout
                     </NavLink>
                   </li>

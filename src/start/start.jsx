@@ -11,8 +11,9 @@ export function Play() {
 
 
     <h1>
-        Welcome, {user.username}!
-        </h1>
+         Welcome, {user && user.username ? user.username : "Guest"}!
+</h1>
+      
         <h1>
         Ready to
         Match?
