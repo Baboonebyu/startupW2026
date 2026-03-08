@@ -95,13 +95,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
-
+- [x] **Node.js/Express HTTP service** - Used Express
+- [x] **Static middleware for frontend** - siple endpoint in index
+- [x] **Calls to third party endpoints** - Calls a Bible API
+- [x] **Backend service endpoints** - Acts on the calls from the front end and gives responses.
+- [x] **Frontend calls service endpoints** - Front end calls the back end. removed all the saving in local storage such as stats and users.
+- [x] **Supports registration, login, logout, and restricted endpoint** implemented endpoints and the save scores require auth and is restricted.
 ## 🚀 DB deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
