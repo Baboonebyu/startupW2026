@@ -7,47 +7,7 @@ const authCookieName = 'token';
 const db = require('./database.js');
 
 
-let userScores = [
-  {
-    username: '123',
-    scores: [
-      { time: 60000, date: '2026-03-07' },
-      { time: 62000, date: '2026-03-08' }
-    ]
-  }
-];
-let userStats = [
-{username: '123', stats:    [
-          { id: 1, correct: 0, total: 0 },
-          { id: 2, correct: 0, total: 0 },
-          { id: 3, correct: 0, total: 0 },
-          { id: 4, correct: 0, total: 0 },
-          { id: 5, correct: 0, total: 0 },
-          { id: 6, correct: 0, total: 0 },
-          { id: 7, correct: 0, total: 0 },
-          { id: 8, correct: 0, total: 0 },
-          { id: 9, correct: 0, total: 0 },
-          { id: 10, correct: 0, total: 0 },
-          { id: 11, correct: 0, total: 0 },
-          { id: 12, correct: 0, total: 0 },
-          { id: 13, correct: 0, total: 0 },
-          { id: 14, correct: 0, total: 0 },
-          { id: 15, correct: 0, total: 0 },
-          { id: 16, correct: 0, total: 0 },
-          { id: 17, correct: 0, total: 0 },
-          { id: 18, correct: 0, total: 0 },
-          { id: 19, correct: 0, total: 0 },
-          { id: 20, correct: 0, total: 0 },
-          { id: 21, correct: 0, total: 0 },
-          { id: 22, correct: 0, total: 0 },
-          { id: 23, correct: 0, total: 0 },
-          { id: 24, correct: 0, total: 0 },
-          { id: 25, correct: 0, total: 0 },
-          { id: 26, correct: 0, total: 0 },
-        ]}
 
-
-];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
