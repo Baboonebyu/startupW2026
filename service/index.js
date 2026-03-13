@@ -4,13 +4,9 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const authCookieName = 'token';
+const db = require('./database.js');
 
-let users = [];
-let globalScores = [
-  { username: 'TempleMaster', time: 60000, date: '2026-03-07' },
-  { username: 'SpeedySaint', time: 75000, date: '2026-03-07' },
-  { username: 'ScriptureStar', time: 90000, date: '2026-03-07' }
-];
+
 let userScores = [
   {
     username: '123',
@@ -77,7 +73,7 @@ apiRouter.post('/register', async (req, res) => {
     console.log(`Received registration request with username: ${value1} and password: ${value2}`);
 
    //taken username
-    if (await findUser('username', req.body.username)){
+    if (await findUserByName(req.body.username)) {
         return res.status(409).json({ error: 'Username already taken' });
     }
     //register new user
@@ -91,11 +87,12 @@ apiRouter.post('/register', async (req, res) => {
 
 //login endpoint
 apiRouter.post('/auth/login', async (req, res) => {
-    const user = await findUser('username', req.body.username);
+    const user = await findUserByName(req.body.username);
     if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      user.token = uuid.v4();
-      setAuthCookie(res, user.token);
+      token = uuid.v4();
+      setAuthCookie(res, token);
+      await db.updateUserToken(user.username, token);
       console.log('Backend user:', user);
       res.send({ username: user.username });
       return;
@@ -107,16 +104,16 @@ apiRouter.post('/auth/login', async (req, res) => {
 // Logout endpoint
 apiRouter.delete('/auth/logout', async (req, res) => {
 
-  const user = await findUser('token', req.cookies[authCookieName]);
+  const user = await findUserByToken(req.cookies[authCookieName]);
   if (user) {
-    delete user.token;
+    await db.updateUserRemoveToken(user.username);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
 });
 
 const verifyToken = async (req, res, next) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
+  const user = await findUserByToken(req.cookies[authCookieName]);
 
   if (!user) {
     return res.status(401).send({ msg: 'Unauthorized' });
@@ -127,17 +124,20 @@ const verifyToken = async (req, res, next) => {
 };
 
 //get global scores
-apiRouter.get('/globalScores', (req, res) => {
+apiRouter.get('/globalScores', async (req, res) => {
+  const globalScores = await db.getGlobalScores();
   res.send(globalScores);
 });
 
 //save global scores
-apiRouter.post('/globalScores', verifyToken, (req, res) => {
+apiRouter.post('/globalScores', verifyToken, async (req, res) => {
+  const globalScores = await db.getGlobalScores();
   globalScores.push(req.body);
   globalScores.sort((a, b) => a.time - b.time);
   if (globalScores.length > 5) {
     globalScores.pop();
   }
+  await db.saveGlobalScores(globalScores);
 });
 
 //get user scores
@@ -209,16 +209,19 @@ apiRouter.post('/userStats', verifyToken, (req, res) => {
   res.status(200).send({ msg: 'Stats updated' });
 });
 
-async function findUser(lookup,value){
-    if (!value) return null;
-    return users.find(user => user[lookup] === value);
+async function findUserByName(username){
+    return db.getUser(username);
 }
 
 
+async function findUserByToken(token){
+    return db.getUserByToken(token);
+}
+
 async function createUser(username, password){
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = { token: uuid.v4(), username, password: hashedPassword };
-    users.push(user);
+    const user = { username, password: hashedPassword };
+    await db.addUser(user);
     return user;
 }
 // setAuthCookie in the HTTP response
