@@ -142,22 +142,31 @@ apiRouter.post('/globalScores', verifyToken, async (req, res) => {
 
 //get user scores
 apiRouter.get('/userScores', verifyToken, async (req, res) => {
-  console.log('User in /userScores endpoint:', req.user);
-  const userScoresEntry = await db.getUserScores(req.user.username);
-  res.send(userScoresEntry ? userScoresEntry.scores : []);
+  try {
+    console.log('User in /userScores endpoint:', req.user);
+    const userScoresEntry = await db.getUserScores(req.user.username);
+    res.send(userScoresEntry ? userScoresEntry.scores : []);
+  } catch (err) {
+    console.error('Error in /userScores GET:', err);
+    res.status(500).send({ error: 'Failed to get user scores' });
+  }
 });
 
 //save user scores
 apiRouter.post('/userScores', verifyToken, async (req, res) => {
-  const userScoresEntry = await db.getUserScores(req.user.username);
-  if (userScoresEntry) {
-    userScoresEntry.scores.push(req.body);
-    userScoresEntry.scores.sort((a, b) => a.time - b.time);
-    if (userScoresEntry.scores.length > 5) {
-      userScoresEntry.scores.pop();
+  try {
+    const userScoresEntry = await db.getUserScores(req.user.username);
+    let scores = userScoresEntry ? userScoresEntry.scores : [];
+    scores.push(req.body);
+    scores.sort((a, b) => a.time - b.time);
+    if (scores.length > 5) {
+      scores.pop();
     }
-  } else {
-    await db.saveUserScores(req.user.username, [req.body]);
+    await db.saveUserScores(req.user.username, scores);
+    res.status(200).send({ msg: 'Scores updated' });
+  } catch (err) {
+    console.error('Error in /userScores POST:', err);
+    res.status(500).send({ error: 'Failed to save user scores' });
   }
 });
 
