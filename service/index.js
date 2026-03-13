@@ -127,7 +127,7 @@ const verifyToken = async (req, res, next) => {
 };
 
 //get global scores
-apiRouter.get('/globalScores', verifyToken, (req, res) => {
+apiRouter.get('/globalScores', (req, res) => {
   res.send(globalScores);
 });
 

@@ -50,6 +50,7 @@ const [randomScripture, setRandomScripture] = React.useState(null);
     });
     if (!response.ok) {
       alert('Registration failed');
+      
     }
   } catch (error) {
     alert('Error registering user');
