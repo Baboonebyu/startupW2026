@@ -62,7 +62,13 @@ async function getGlobalScores() {
     return userScoresCollection.updateOne({ username }, { $set: { scores } }, { upsert: true });
   }
 
+function getUserStats(username) {
+  return userStatsCollection.findOne({ username });
+}
 
+function saveUserStats(username, stats) {
+  return userStatsCollection.updateOne({ username }, { $set: { stats } }, { upsert: true });
+}
 
 
 
@@ -75,5 +81,7 @@ module.exports = {
     getGlobalScores,
     saveGlobalScores,
     getUserScores,
-    saveUserScores
+    saveUserScores,
+    getUserStats,
+    saveUserStats
 };

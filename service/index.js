@@ -173,9 +173,9 @@ apiRouter.post('/userScores', verifyToken, async (req, res) => {
 
 
 //get user stats
-apiRouter.get('/userStats', verifyToken, (req, res) => {
+apiRouter.get('/userStats', verifyToken, async (req, res) => {
   console.log('User in /userStats endpoint:', req.user);
-  const userStatsEntry = userStats.find(u => u.username === req.user.username);
+  const userStatsEntry = await db.getUserStats(req.user.username);
   res.send(userStatsEntry ? userStatsEntry.stats : [
           { id: 1, correct: 0, total: 0 },
           { id: 2, correct: 0, total: 0 },
@@ -208,13 +208,8 @@ apiRouter.get('/userStats', verifyToken, (req, res) => {
 
 
 //save user stats
-apiRouter.post('/userStats', verifyToken, (req, res) => {
-  const userStatsEntry = userStats.find(u => u.username === req.user.username);
-  if (userStatsEntry) {
-    userStatsEntry.stats = req.body.stats;
-  } else {
-    userStats.push({ username: req.user.username, stats: req.body.stats });
-  }
+apiRouter.post('/userStats', verifyToken, async (req, res) => {
+  await db.saveUserStats(req.user.username, req.body.stats);
   res.status(200).send({ msg: 'Stats updated' });
 });
 
