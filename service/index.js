@@ -141,15 +141,15 @@ apiRouter.post('/globalScores', verifyToken, async (req, res) => {
 });
 
 //get user scores
-apiRouter.get('/userScores', verifyToken, (req, res) => {
+apiRouter.get('/userScores', verifyToken, async (req, res) => {
   console.log('User in /userScores endpoint:', req.user);
-  const userScoresEntry = userScores.find(u => u.username === req.user.username);
+  const userScoresEntry = await db.getUserScores(req.user.username);
   res.send(userScoresEntry ? userScoresEntry.scores : []);
 });
 
 //save user scores
-apiRouter.post('/userScores', verifyToken, (req, res) => {
-  const userScoresEntry = userScores.find(u => u.username === req.user.username);
+apiRouter.post('/userScores', verifyToken, async (req, res) => {
+  const userScoresEntry = await db.getUserScores(req.user.username);
   if (userScoresEntry) {
     userScoresEntry.scores.push(req.body);
     userScoresEntry.scores.sort((a, b) => a.time - b.time);
@@ -157,7 +157,7 @@ apiRouter.post('/userScores', verifyToken, (req, res) => {
       userScoresEntry.scores.pop();
     }
   } else {
-    userScores.push({ username: req.user.username, scores: [req.body] });
+    await db.saveUserScores(req.user.username, [req.body]);
   }
 });
 

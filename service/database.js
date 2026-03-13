@@ -54,6 +54,13 @@ async function getGlobalScores() {
     return globalScoresCollection.updateOne({}, { $set: { globalScores: scoresArray } }, { upsert: true });
   }
 
+  function getUserScores(username) {
+    return userScoresCollection.findOne({ username });
+  }
+
+  function saveUserScores(username, scores) {
+    return userScoresCollection.updateOne({ username }, { $set: { scores } }, { upsert: true });
+  }
 
 
 
@@ -66,5 +73,7 @@ module.exports = {
     updateUserToken,
     updateUserRemoveToken,
     getGlobalScores,
-    saveGlobalScores
+    saveGlobalScores,
+    getUserScores,
+    saveUserScores
 };
