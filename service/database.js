@@ -43,12 +43,17 @@ function updateUserRemoveToken(username) {
   return usersCollection.updateOne({ username }, { $unset: { token: "" } });
 }
 
-function getGlobalScores() {
-    return globalScoresCollection.findOne();
+async function getGlobalScores() {
+  // Returns only the globalScores array, or an empty array if not found
+  const doc = await globalScoresCollection.findOne({});
+  return doc && doc.globalScores ? doc.globalScores : [];
 }
-function saveGlobalScores(scores) {
-    return globalScoresCollection.updateOne({}, { $set: scores }, { upsert: true });
-}
+
+  function saveGlobalScores(scoresArray) {
+    // Updates the single document to have globalScores: scoresArray
+    return globalScoresCollection.updateOne({}, { $set: { globalScores: scoresArray } }, { upsert: true });
+  }
+
 
 
 
