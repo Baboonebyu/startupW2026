@@ -191,7 +191,7 @@ async function createUser(username, password){
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
-    maxAge: 1000 * 60 * 60 * 24 * 365,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
     secure: true,
     httpOnly: true,
     sameSite: 'strict',
