@@ -14,9 +14,7 @@ export function Game() {
   const { user, setUser } = useContext(UserContext);
   const [cards, setCards] = React.useState(shuffleArray(Deck));
   const [lastThreeMessages, setLastThreeMessages] = useState([
-    "Emma got a new best of 1:45!",
-    "Noah got a new best of 2:10!",
-    "John got a new best of 1:30!",
+    
   ]);
   const firstSelectedRef = React.useRef(false);
   const secondSelectedRef = React.useRef(false);
@@ -41,7 +39,7 @@ export function Game() {
     }};
 
   function wsSendMessage(username, time) {
-    const message = `${username} got a new best of ${Math.floor(time / 60000)}:${String(Math.floor((time % 60000) / 1000)).padStart(2, '0')}!`;
+    const message = `${username} just scored a time of ${Math.floor(time / 60000)}:${String(Math.floor((time % 60000) / 1000)).padStart(2, '0')}!`;
     sendWebSocketMessage(message);
   }
 

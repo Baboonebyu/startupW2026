@@ -217,13 +217,31 @@ const { WebSocketServer } = require('ws');
 const wss = new WebSocketServer({ server: httpService });
 
 wss.on('connection', (ws) => {
-  ws.on('message', (data) => {
-    const msg = String.fromCharCode(...data);
-    console.log('received: %s', msg);
+  // Send a ping every 30 seconds
+  const pingInterval = setInterval(() => {
+    if (ws.readyState === ws.OPEN) {
+      ws.ping();
+    }
+  }, 30000);
 
-    ws.send(`I heard you say "${msg}"`);
+  ws.on('pong', () => {
+    console.log('Pong received from client');
   });
 
-  ws.send('Hello webSocket');
-  ws.send('Moo');
+  ws.on('close', () => {
+    clearInterval(pingInterval);
+  });
+
+  ws.on('message', (data) => {
+    const msg = data.toString();
+    console.log('received: %s', msg);
+    // Broadcast to all connected clients
+    wss.clients.forEach(function each(client) {
+      if (client.readyState === client.OPEN) {
+        client.send(`"${msg}"`);
+      }
+    });
+  });
+
+ 
 });
