@@ -121,8 +121,29 @@ export function Game() {
     });
   }
 
+useEffect(() => {
+  const ws = new WebSocket('ws://localhost:4000');
+  ws.onmessage = (event) => {
+    console.log('WebSocket message:', event.data);
+  };
+  return () => ws.close();
+}, []);
+
+
   useEffect(() => {
     const intervalId = setInterval(() => {
+
+
+
+
+
+
+
+
+
+
+
+
       updateMessages(randomUpdateMessages());
     }, 3000);
 

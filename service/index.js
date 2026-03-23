@@ -201,6 +201,29 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
+});
+
+
+
+//websocket
+
+
+
+
+const { WebSocketServer } = require('ws');
+
+const wss = new WebSocketServer({ server: httpService });
+
+wss.on('connection', (ws) => {
+  ws.on('message', (data) => {
+    const msg = String.fromCharCode(...data);
+    console.log('received: %s', msg);
+
+    ws.send(`I heard you say "${msg}"`);
+  });
+
+  ws.send('Hello webSocket');
+  ws.send('Moo');
 });
