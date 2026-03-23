@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 export function Game() {
+  const ws = React.useRef(null);
   const [isRunning, setIsRunning] = useState(true);
   const [elapsed, setElapsed] = useState(0);
   const navigate = useNavigate();
@@ -23,7 +24,30 @@ export function Game() {
   const [selectedIndexes, setSelectedIndexes] = useState([]);
 
 
-  
+  useEffect(() => {
+    ws.current = new WebSocket('ws://localhost:4000');
+    ws.current.onopen = () => console.log('WebSocket connected');
+    ws.current.onmessage = (event) => {
+      console.log('WebSocket message:', event.data);
+      updateMessages(event.data);
+    };
+    ws.current.onclose = () => console.log('WebSocket disconnected');
+    return () => ws.current.close();
+  }, []);
+
+  const sendWebSocketMessage = (message) => {
+    if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+      ws.current.send(message);
+    }};
+
+  function wsSendMessage(username, time) {
+    const message = `${username} got a new best of ${Math.floor(time / 60000)}:${String(Math.floor((time % 60000) / 1000)).padStart(2, '0')}!`;
+    sendWebSocketMessage(message);
+  }
+
+
+
+
 
 
 
@@ -56,10 +80,14 @@ export function Game() {
       saveGlobalBest(user.username, elapsed);
       saveUsersBests(user.username, elapsed);
       saveUserStats(user.username, stats);
+      wsSendMessage(user.username, elapsed);
 
       navigate('/replay', { state: { elapsed } });
     }
   }, [cards, user.username, elapsed, isRunning]);
+
+
+
 
 
   function handleCardClick(card, index) {
@@ -121,34 +149,8 @@ export function Game() {
     });
   }
 
-useEffect(() => {
-  const ws = new WebSocket('ws://localhost:4000');
-  ws.onmessage = (event) => {
-    console.log('WebSocket message:', event.data);
-  };
-  return () => ws.close();
-}, []);
 
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-
-
-
-
-
-
-
-
-
-
-
-
-      updateMessages(randomUpdateMessages());
-    }, 3000);
-
-    return () => clearInterval(intervalId);
-  }, []);
   return (
     <main className="container-fluid  text-center gameMain">
               <div className ="websocketInfo">
