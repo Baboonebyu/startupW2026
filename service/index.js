@@ -117,6 +117,23 @@ apiRouter.post('/userScores', verifyToken, async (req, res) => {
   try {
     const userScoresEntry = await db.getUserScores(req.user.username);
     let scores = userScoresEntry ? userScoresEntry.scores : [];
+    
+    console.log('Scores array:', scores);
+    console.log('Incoming time:', req.body.time);
+    if (scores.length === 0) {
+      console.log('First score for user, broadcasting!');
+    } else if (req.body.time < scores[0].time) {
+      console.log('New personal best! Broadcasting!');
+    }
+    if (req.body.time < (scores[0] && scores[0].time) || scores.length === 0) {
+      const msg = `${req.user.username} just got a new personal best of ${Math.floor(req.body.time / 60000)}:${String(Math.floor((req.body.time % 60000) / 1000)).padStart(2, '0')}!`;
+      wss.clients.forEach(function each(client) {
+        if (client.readyState === client.OPEN) {
+          client.send(`"${msg}"`);
+        }
+      });
+    }
+
     scores.push(req.body);
     scores.sort((a, b) => a.time - b.time);
     if (scores.length > 5) {
