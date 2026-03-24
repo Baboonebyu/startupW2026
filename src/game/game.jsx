@@ -23,13 +23,17 @@ export function Game() {
 
 
   useEffect(() => {
-    ws.current = new WebSocket('ws://localhost:4000');
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    const socketUrl = [`${protocol}://${window.location.host}/ws`];
+
+    ws.current = new WebSocket(socketUrl);
     ws.current.onopen = () => console.log('WebSocket connected');
     ws.current.onmessage = (event) => {
       console.log('WebSocket message:', event.data);
       updateMessages(event.data);
     };
     ws.current.onclose = () => console.log('WebSocket disconnected');
+
     return () => ws.current.close();
   }, []);
 
@@ -293,22 +297,3 @@ function saveUsersBests(username, time) {
   
 }
 
-
-function randomUpdateMessages() {
-  const randomIndex = Math.floor(Math.random() * hardcodedmessages.length);
-  return hardcodedmessages[randomIndex];
-}
-
-const hardcodedmessages = [
-  "Emma got a new best of 1:45!",
-  "Noah got a new best of 2:10!",
-  "John got a new best of 1:30!",
-  "Sophia got a new best of 1:50!",
-  "Liam got a new best of 2:00!",
-  "Olivia got a new best of 1:40!",
-  "Ava got a new best of 1:55!",
-  "Isabella got a new best of 1:35!",
-  "Mia got a new best of 2:05!",
-  "Ethan got a new best of 1:25!",
-  
-]
