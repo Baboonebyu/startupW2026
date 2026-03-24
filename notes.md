@@ -54,4 +54,4 @@ Had some issues with it running on the server. It had to do with nav links. not 
 This wasn't too hard. I just went over databases in my 240 class. It was a little hard to get them to start saving at first and to get the auth token to be removed but once I figured it out the rest came super easy. Hopefully I have enough commits. This was much faster. Also i had to add so awaits to the code to get it to load. I ran into an issue were it would just freeze without them. AI helped me find where I had missed them. It is really cool how close to being done I am. Although I wish I would have had it done yesterday as I was showing a bunch of people and I lost there scores.
 
 ## Websocket
-This wasn't as hard as I thought. However my Websocket is very simple.
+This wasn't as hard as I thought. However my Websocket is very simple. I do have 2 different ways messages are sent but they are handled the same way. It's cool to see it work and I can see how for more complex websites this is a must have. On my startup it is kinda just a neat feature. However getting to to work deployed is hard. I keep getting 502 errors.
