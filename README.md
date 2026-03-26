@@ -114,6 +114,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] **Backend listens for WebSocket connection** - Receives scores from the front end
 - [x] **Frontend makes WebSocket connection** - Receives other players scores.
-- [x] **Data sent over WebSocket connection** - Sends scores
-- [x] **WebSocket data displayed** - DIsplays incoming scores
+- [x] **Data sent over WebSocket connection** - Sends scores.
+- [x] **WebSocket data displayed** - Displays incoming scores on the game page under the time display. It also shows when someone gets a new Personal best.
 - [x] **Application is fully functional** - It is done!
