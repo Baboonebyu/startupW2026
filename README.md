@@ -8,14 +8,20 @@ Do you want to impress your friends? Or maybe you are like me and have accidenta
 
 ### Design
 
-<img src="TempleMatchReadmePhotos/HomeScreen.jpg" alt="Image of home screen" width="400" height="400">| <img src="TempleMatchReadmePhotos/StartScreen.jpg" alt="Image of start screen" width="400" height="400">
+<img src="TempleMatchReadmePhotos/HomeScreen.jpg" alt="Image of home screen" width="400" height="400"> <img src="TempleMatchReadmePhotos/StartScreen.jpg" alt="Image of start screen" width="400" height="400">
 <img src="TempleMatchReadmePhotos/GameScreen.jpg" alt="Image of game screen" width="400" height="400">
 <img src="TempleMatchReadmePhotos/ScoreScreen.jpg" alt="Image of scores screen" width="400" height="400">
 
 These show the four main screens of my webapp. They will start at the home screen and can navigate to the start screen by logging in. After that they can go to the game screen or the scores screen 
 
 ### Photos of final product
-<img src="FinalPhotos/Login.jpg" alt="Image of Login screen" width="400" height="400">
+Here is what it looked like once I was done
+
+<img src="final photos/login.jpg" alt="Image of Login screen" width="400" height="400"> <img src="final photos/scripture.jpg" alt="Image of scripture screen" width="400" height="400">
+<img src="final photos/welcome.jpg" alt="Image of welcome screen" width="400" height="400"> <img src="final photos/game.jpg" alt="Image of game screen" width="400" height="400">
+<img src="final photos/well done.jpg" alt="Image of well done screen" width="400" height="400"> <img src="final photos/scores.jpg" alt="Image of scores screen" width="400" height="400">
+
+
 
 
 ### Key features
