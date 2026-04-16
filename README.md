@@ -14,6 +14,10 @@ Do you want to impress your friends? Or maybe you are like me and have accidenta
 
 These show the four main screens of my webapp. They will start at the home screen and can navigate to the start screen by logging in. After that they can go to the game screen or the scores screen 
 
+### Photos of final product
+<img src="FinalPhotos/Login.jpg" alt="Image of Login screen" width="400" height="400">
+
+
 ### Key features
 
 - Match photos of temples with their names
